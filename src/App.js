@@ -1,15 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
 
-import button from './comps/button';
+import React from 'react';
+import Main from './pages/index';
 
 function App() {
   return (
-    <div className="App">
       
-      <button />
+      <Main/>
 
-    </div>
   );
 }
 
