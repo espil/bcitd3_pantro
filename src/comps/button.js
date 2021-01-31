@@ -16,12 +16,12 @@ const Button = styled.button`
 
 const button = () => {
 
-  return 
+  return
 
-    <Button/>
+  <Button />
 
 
-}  
+}
 
 
 
