@@ -154,21 +154,49 @@ padding-bottom:13px;
     align-items:center;
     padding:0px 26px;
 }
-
 `
 
+const fakeItemDB = [
+    {
+        id: 1,
+        name: "Cucumbers",
+        expiry: 20,
+        amount: 3,
+        shelf: "Produce",
+        storage: "Fridge",
+    }
+]
 
+const fakeNutritionDB = [
+    {
+        id: 1,
+        nutrient: "Calories",
+        amount: 200,
+    },
+    {
+        id: 2,
+        nutrient: "Protein",
+        amount: 200,
+    },
+    {
+        id: 3,
+        nutrient: "Carbs",
+        amount: 200,
+    },
+]
 
-const FoodInfo = () => {
+const FoodInfo = ({ itemDatabase, nutritionDatabase }) => {
 
     return <Container>
-        <Header>
-            <div className="food_name">Cucumber</div>
+
+        {itemDatabase.map(o => <Header>
+            <div className="food_name">{o.name}</div>
             <div className="expiry_date">
-                <div className="expiry">expires in 20 days</div>
+                <div className="expiry">expires in {o.expiry} days</div>
                 <div className="dot"></div>
             </div>
-        </Header>
+        </Header>)}
+
         <Macros>
             <div>
                 <div className="macro_number">10</div>
@@ -183,38 +211,44 @@ const FoodInfo = () => {
                 <div className="macro_name">Fat</div>
             </div>
         </Macros>
-        <StorageInfo>
+
+        {itemDatabase.map(o => <StorageInfo>
             <div className="info_cont">
                 <div className="info_header">Amount</div>
-                <div className="info_text">3 Cucumbers currently stored</div>
+                <div className="info_text">{o.amount} items are currently stored</div>
             </div>
             <div className="info_cont">
                 <div className="info_header">Item Storage</div>
-                <div className="info_text">Find it in the Fridge</div>
+                <div className="info_text">Find it in the {o.storage}</div>
             </div>
             <div className="info_cont">
                 <div className="info_header">Shelf</div>
-                <div className="info_text">Find it in the Produce Shelf</div>
+                <div className="info_text">Find it on your {o.shelf} Shelf</div>
             </div>
-        </StorageInfo>
+        </StorageInfo>)}
+
         <Nutrition>
             <div className="nutrition_head">
                 Nutrition Facts
             </div>
-            <div className="dark_grey">
-                <div>Calories</div>
-                <div>200g</div>
-            </div>
-            <div className="light_grey">
-                <div>Calories</div>
-                <div>200g</div>
-            </div>
+            {nutritionDatabase.map(o => <div>
+                <div className="dark_grey">
+                    <div>{o.nutrient}</div>
+                    <div>{o.amount} g</div>
+                </div>
+                <div className="light_grey">
+                    <div>{o.nutrient}</div>
+                    <div>{o.amount} g</div>
+                </div>
+            </div>)}
         </Nutrition>
+
     </Container >
 }
 
 FoodInfo.defaultProps = {
-
+    itemDatabase: fakeItemDB,
+    nutritionDatabase: fakeNutritionDB,
 }
 
 export default FoodInfo;
