@@ -4,8 +4,10 @@ import Shelves from 'comps/Shelves';
 import FoodInfo from 'comps/FoodInfo';
 import styled from 'styled-components';
 
-import AddButton from 'comps/button';
+import AddButton from 'comps/adbutton';
 import DescInp from 'comps/input';
+import Bbut from 'comps/bbut';
+import BrBut from 'comps/brbut';
 
 const Container = styled.div`
   display:flex;
@@ -20,6 +22,8 @@ const Main = () => {
     <FoodInfo />
     {/* <AddButton />
     <DescInp /> */}
+    {/* <Bbut /> */}
+    <BrBut />
   </Container>
 
 
