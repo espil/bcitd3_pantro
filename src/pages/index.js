@@ -1,24 +1,20 @@
 import React from 'react';
-import button from '../comps/button';
+import button from 'comps/button';
+import FAB from 'comps/FAB';
+import Shelves from 'comps/Shelves';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  color:#f22ff;
-  max-width:375;
-  max-height:346;
   display:flex;
-  flex-direction:column;
-  min-width: 375;
-  min-height: 346;
+  align-item:center;
+  justify-content:center;
+  height:100vh;
 `;
 
 const Main = () => {
 
   return <Container>
-    
-    <button />
-    
-    
+    <Shelves />
      </Container>
 
  
