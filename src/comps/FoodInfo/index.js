@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 
 const Container = styled.div`
-margin-top:100px;
-border: 1px solid red;
+background-color:white;
 border-radius: 33.5px 33.5px 0px 0px;
 position:absolute;
 padding-bottom:52px;
+position:absolute;
 `
 
 const Header = styled.div`
