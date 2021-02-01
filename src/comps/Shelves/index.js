@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import vegetables from '../../icons/vegetables.svg';
+import dairy from '../../icons/dairy.svg';
+import seafood from '../../icons/seafood.svg';
+import add from '../../icons/add.svg';
 import shelves from '../../icons/shelves.svg';
-import "../../App.css";
 
 const Container = styled.div`
 display:flex;
@@ -17,29 +19,39 @@ const Header = styled.div`
 display:flex;
 margin:26px 0px 0px 26px;
 & > div {
-    font-family: Pier Sans;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 22px;
-    letter-spacing: 0em;
-    text-align: left;
-  }
+  font-family: Pier Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
 & > img {
-    width: 22px;
-    height: 22px;
-    margin-right:6px;
-  }
+  width: 22px;
+  height: 22px;
+  margin-right:6px;
+}
+`
+
+const ShelfContainer = styled.div`
+display: flex;
+flex-wrap: nowrap;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+// &::-webkit-scrollbar {
+//   display: none;
+// }
 `
 
 const Shelf = styled.div`
-display:flex;
+flex: 0 0 auto;
 flex-direction:column;
 width: 140px;
 height: 170px;
 background: #F6F6FB;
 border-radius: 14px;
-margin:26px;
+margin:26px 0px 26px 26px;
 & > img {
     width: 60px;
     height: 60px;
@@ -69,23 +81,51 @@ margin:26px;
   }
 `
 
-const FAB = () => {
+const fakeShelfDB = [
+  {
+    id: 1,
+    name: "Produce",
+    description: "Fresh leafy greens!",
+    icon: "https://svgshare.com/i/Tdm.svg",
+  },
+  {
+    id: 2,
+    name: "Dairy",
+    description: "For your cravings",
+    icon: "https://svgshare.com/i/Tej.svg" ,
+  },
+  {
+    id: 3,
+    name: "Seafood",
+    description: "Right from the sea",
+    icon: "https://svgshare.com/i/TcH.svg" ,
+  },
+]
 
-    return <Container>
-        <Header>
-            <img src={shelves} alt="shelves" />
-            <div>My Shelves</div>
-        </Header>
-        <Shelf>
-            <img src={vegetables} alt="shelficon" />
-            <div className="header">Produce</div>
-            <div className="subheader">Fresh leafy greens!</div>
-        </Shelf>
-    </Container >
+const Shelves = ({ shelfDatabase }) => {
+
+  return <Container>
+    <Header>
+      <img src={shelves} alt="shelves" />
+      <div>My Shelves</div>
+    </Header>
+    <ShelfContainer>
+      {shelfDatabase.map((o,i) => <Shelf>
+        <img src={o.icon} alt="icon" />
+        <div className="header">{o.name}</div>
+        <div className="subheader">{o.description}</div>
+      </Shelf>)}
+      <Shelf>
+        <img src={add} alt="icon" />
+        <div className="header">Add Shelf</div>
+        <div className="subheader">Sort your items using shelfs!</div>
+      </Shelf>
+    </ShelfContainer>
+  </Container >
 }
 
-FAB.defaultProps = {
-
+Shelves.defaultProps = {
+  shelfDatabase: fakeShelfDB,
 }
 
-export default FAB;
+export default Shelves;
