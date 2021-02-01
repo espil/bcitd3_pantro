@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import FoodInfo from 'comps/FoodInfo';
 import Bbut from 'comps/bbut';
-import cucumber from "../img/veg/cucumber.png"
+import cucumber from "../img/cucumbers.jpg"
 
 
 const Container = styled.div`
@@ -10,19 +10,29 @@ const Container = styled.div`
     align-item:center;
     justify-content:center;
     width: 375px;
-    height: 812px;
+    .shadow{
+        width:375px;
+        height:250px;
+        background: rgba(177, 177, 177, 0.22);
+        position:absolute;
+    }
     .image{
-
+        & img{
+            width:375px;
+            height:250px;
+            object-fit:cover;
+        }
     }
 `;
 
 const Item = () => {
 
     return <Container>
-        <Bbut></Bbut>
         <div className="image">
             <img src={cucumber} />
         </div>
+        <div className="shadow"></div>
+        <Bbut></Bbut>
         <FoodInfo />
 
     </Container>
