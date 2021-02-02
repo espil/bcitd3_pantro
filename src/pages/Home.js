@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import ChoiceSlider from 'comps/Slider'; 
+import Dropdown from 'comps/Dropdown'; 
 import Shelves from "../comps/Shelves"
 import FoodList from "../comps/FoodList"
 import FAB from "../comps/FAB"
@@ -11,7 +13,7 @@ width: 375px;
 `;
 
 const Header = styled.div`
-display:flex;
+display :flex;
 justify-content:space-between;
 margin:0px 26px 26px 26px;
 & > div {
