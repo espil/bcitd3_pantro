@@ -23,6 +23,9 @@ const FoodList = (width, height, bulletcolor) => {
         <ListedItem />
         <ListedItem />
         <ListedItem />
+        <ListedItem />
+        <ListedItem />
+        <ListedItem />
     </Container >
 }
 
