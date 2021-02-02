@@ -2,6 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import "../../App.css";
 import cucumber from '../../img/veg/cucumber.png';
+import beets from '../../img/veg/beets.png';
+import carrots from '../../img/veg/carrots.png';
+import celery from '../../img/veg/celery.png';
+import cilantro from '../../img/veg/cilantro.png';
+import leek from '../../img/veg/leek.png';
+import tomato from '../../img/veg/tomato.png';
+
 
 const Container = styled.div`
     display: flex;
@@ -33,11 +40,13 @@ const ItemName = styled.div`
 `;
 
 
-const ShelfItem = (width, height, foodname) => {
+const ShelfItem = ({width, height, foodname, onItemClick}) => {
 
     return <Container>
-        <SquareIcon>
-            <img src={cucumber} alt="Cucumber" width='55px' height='50px' />
+        <SquareIcon onClick={()=>{
+                onItemClick()
+            }}>
+            <img src={cucumber} width='55px' height='50px' />
         </SquareIcon>
         <ItemName>
             <div>{foodname="Cucumber"}</div>
@@ -48,7 +57,8 @@ const ShelfItem = (width, height, foodname) => {
 ShelfItem.defaultProps = {
     width:null,
     height:null,
-    foodname: null
+    foodname: null,
+    onItemClick:()=>{}
 }
 
 export default ShelfItem;

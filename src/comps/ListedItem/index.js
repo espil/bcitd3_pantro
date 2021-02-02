@@ -12,7 +12,6 @@ const Container = styled.div`
     min-height: 60px;
     max-height: 60px;
     background-color: #ffffff;
-    border-top: .25px solid #d3d3d3;
 `;
 
 const ListedName = styled.div`
@@ -21,7 +20,7 @@ const ListedName = styled.div`
     align-items: center;
     height: 40px;
     color: #000000;
-    margin-left:13px;
+    margin-left: 10px;
 `;
 
 const Bullet = styled.div`
@@ -62,18 +61,20 @@ const TimeText = styled.div`
     padding-right: 20px;
 `;
 
-const ListedItem = (width, height, bulletcolor, foodname, expiry) => {
+const ListedItem = ({width, height, bulletcolor, foodname, expiry, onBulletSelect}) => {
 
     return <Container>
         <ListedName>
             <NameCont>
-                <Bullet /> 
+                <Bullet bulletcolor={bulletcolor} onClick={()=>{
+                onBulletSelect()
+            }}/> 
                 <ItemName>{foodname="Cucumber"}</ItemName>
             </NameCont>
         </ListedName>
         <TimeLeft>
             <TimeText>{expiry="5"} days</TimeText>
-            <Bullet width="15px" height="15px" bulletcolor="#70DA40"/>
+            <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
         </TimeLeft>
     </Container >
 }
@@ -83,7 +84,8 @@ ListedItem.defaultProps = {
     height: null,
     bulletcolor: null,
     foodname: null,
-    expiry: null
+    expiry: null,
+    onBulletSelect:()=>{}
 }
 
 export default ListedItem;
