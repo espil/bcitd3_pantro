@@ -5,7 +5,6 @@ import ShelfItem from 'comps/ShelfItem';
 import ListedItem from 'comps/ListedItem';
 import FoodList from 'comps/FoodList';
 import ProduceShelf from 'comps/ProduceShelf';
-import AddButton from "../comps/adbutton.js"
 import Slider from "../comps/Slider"
 import Dropdown from "../comps/Dropdown"
 import BrBut from "../comps/brbut.js"
