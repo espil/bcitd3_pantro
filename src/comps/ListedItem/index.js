@@ -51,7 +51,7 @@ const TimeLeft = styled.div`
     color: #000000;
     font-size: 18px; 
     font-family: 'PierSans';
-    margin-right: 20px;
+    margin-right: 26px;
 `;
 
 const TimeText = styled.div`

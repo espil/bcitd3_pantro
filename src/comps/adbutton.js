@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import restaurant from '../icons/restaurant.svg';
+import sort from '../icons/settings.svg';
 
 
 const Button = styled.div`
-  position: absolute;
   width: 323px;
   height: 57px;
+  position:absolute;
+  bottom:52px;
   background-color:#23b3f2;  
   color: white;
   font-family: Pier Sans;
@@ -23,7 +25,6 @@ const Button = styled.div`
   justify-content:center;
   align-items:center;
   & > img {
-    display:${props=>props.display_option ? props.display_option : "inline"};
     width: 18px;
     height: 18px;
   }
@@ -33,7 +34,7 @@ const Button = styled.div`
 const AddButton = ({text}) => {
 
   return <Button>
-    <img src={restaurant} />
+    <img src={sort} />
     &nbsp;{text}
      </Button>
 
@@ -41,7 +42,7 @@ const AddButton = ({text}) => {
 
 AddButton.defaultProps = {
   text:"Add Item",
-  display_option:"none"
+  image:null,
 }
 
 export default AddButton;
