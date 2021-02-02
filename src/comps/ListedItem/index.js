@@ -12,7 +12,7 @@ const Container = styled.div`
     min-height: 60px;
     max-height: 60px;
     background-color: #ffffff;
-    border-bottom: 1px solid #d3d3d3;
+    border-top: .25px solid #d3d3d3;
 `;
 
 const ListedName = styled.div`
@@ -21,7 +21,7 @@ const ListedName = styled.div`
     align-items: center;
     height: 40px;
     color: #000000;
-    margin-left: 30px;
+    margin-left:13px;
 `;
 
 const Bullet = styled.div`
@@ -52,7 +52,7 @@ const TimeLeft = styled.div`
     color: #000000;
     font-size: 18px; 
     font-family: 'PierSans';
-    margin-right: 20px;
+    margin-right: 26px;
 `;
 
 const TimeText = styled.div`

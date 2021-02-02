@@ -10,9 +10,7 @@ const Container = styled.div`
 display:flex;
 justify-content:center;
 flex-direction:column;
-border:1px solid red;
 width:375px;
-height:fit-content
 `
 
 const Header = styled.div`
@@ -30,7 +28,6 @@ margin:26px 0px 0px 26px;
 & > img {
   width: 22px;
   height: 22px;
-  margin-right:6px;
 }
 `
 
@@ -79,7 +76,7 @@ margin:26px 0px 26px 26px;
     opacity: 0.5;
     margin:8px 16px 0px 16px;
   }
-`
+`;
 
 const fakeShelfDB = [
   {
@@ -92,13 +89,13 @@ const fakeShelfDB = [
     id: 2,
     name: "Dairy",
     description: "For your cravings",
-    icon: "https://svgshare.com/i/Tej.svg" ,
+    icon: "https://svgshare.com/i/Tej.svg",
   },
   {
     id: 3,
     name: "Seafood",
     description: "Right from the sea",
-    icon: "https://svgshare.com/i/TcH.svg" ,
+    icon: "https://svgshare.com/i/TcH.svg",
   },
 ]
 
@@ -107,15 +104,15 @@ const Shelves = ({ shelfDatabase }) => {
   return <Container>
     <Header>
       <img src={shelves} alt="shelves" />
-      <div>My Shelves</div>
+      <div>&nbsp;My Shelves</div>
     </Header>
     <ShelfContainer>
-      {shelfDatabase.map((o,i) => <Shelf>
+      {shelfDatabase.map((o, i) => <Shelf>
         <img src={o.icon} alt="icon" />
         <div className="header">{o.name}</div>
         <div className="subheader">{o.description}</div>
       </Shelf>)}
-      <Shelf>
+      <Shelf >
         <img src={add} alt="icon" />
         <div className="header">Add Shelf</div>
         <div className="subheader">Sort your items using shelfs!</div>
