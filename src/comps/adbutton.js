@@ -8,6 +8,8 @@ import sort from '../icons/settings.svg';
 const Button = styled.div`
   width: 323px;
   height: 57px;
+  position:absolute;
+  bottom:52px;
   background-color:#23b3f2;  
   color: white;
   font-family: Pier Sans;
