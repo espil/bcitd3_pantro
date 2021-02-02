@@ -10,24 +10,37 @@ import AddButton from '../comps/adbutton';
 // import Dropdown from "../comps/Dropdown"
 
 const Main = styled.div`
-display:flex;
-flex-direction:column;
-align-item:center;
-justify-content:center;
-height:100vh;
-width:auto;
+display: flex;
+flex-direction: column;
+min-width: 375px;
+max-width: 375px;
+min-height: 500px;
+max-height: 500px;
 
 & > .tit {
-
-    font-family: Pier Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 36px;
-
+  position: absolute;
+  width: 146px;
+  height: 22px;
+  left: 26px;
+  top: 101px;
+  
+  font-family: Pier Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  
+  color: #000000;
 }
 .name {
+  position: absolute;
+  width: 323px;
+  height: 39px;
+  left: 26px;
+  top: 198px;
   
+  background: #F6F6FB;
+  border-radius: 13px;
   font-family: Pier Sans;
   font-style: normal;
   font-weight: normal;
@@ -37,7 +50,14 @@ width:auto;
   color: #000000;
 }
 .date {
+  position: absolute;
+  width: 323px;
+  height: 39px;
+  left: 26px;
+  top: 282px;
   
+  background: #F6F6FB;
+  border-radius: 13px;
   font-family: Pier Sans;
   font-style: normal;
   font-weight: normal;
@@ -47,7 +67,14 @@ width:auto;
   color: #000000;
 }
 .amount {
+  position: absolute;
+  width: 323px;
+  height: 39px;
+  left: 26px;
+  top: 365px;
   
+  background: #F6F6FB;
+  border-radius: 13px;
   font-family: Pier Sans;
   font-style: normal;
   font-weight: normal;
@@ -57,7 +84,14 @@ width:auto;
   color: #000000;
 }
 .shelf {
+  position: absolute;
+  width: 323px;
+  height: 39px;
+  left: 26px;
+  top: 452px;
   
+  background: #F6F6FB;
+  border-radius: 13px;
   font-family: Pier Sans;
   font-style: normal;
   font-weight: normal;
@@ -67,7 +101,14 @@ width:auto;
   color: #000000;
 }
 .Storage {
+  position: absolute;
+  width: 323px;
+  height: 46px;
+  left: 26px;
+  top: 541px;
   
+  background: #F6F6FB;
+  border-radius: 18px;
   font-family: Pier Sans;
   font-style: normal;
   font-weight: normal;
@@ -89,37 +130,33 @@ const AddItem = () => {
 
     <div className="tit">
       Add an Item
-    </div> &nbsp;
+    </div>
     <div className='name'>
       Item Name
-      &nbsp;
-    <Input></Input>
     </div>
 
+    <Input></Input>
     <div className='date'>
       Expiry Date (dd/mm/yyyy)
-      &nbsp;
-      
-    <Input></Input>
     </div>
+
+    <Input></Input>
+
     <div className='amount'>
-      Amount&nbsp;
-      
-    <Input></Input>
+      Amount      
     </div>
+    <Input></Input>
+
     <div className='shelf'>
-      Shelf&nbsp;
-      
+      Shelf      
+     </div>
     <Input></Input>
- 
-    </div>
 
     <div className='storage'>
-      Storage&nbsp;
-
-
+      Storage
+      
+      <AddButton />
     </div>
-    <AddButton />
   </Main>
 }
 
