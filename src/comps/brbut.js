@@ -6,6 +6,8 @@ import rarrow from '../icons/rarrow.svg';
 
 const Button = styled.div`
   position: absolute;
+  top:26px;
+  left:26px;
   width:24px;
   height:24px;
   cursor: pointer;

@@ -7,6 +7,16 @@ import ListedItem from 'comps/ListedItem';
 import FoodList from 'comps/FoodList';
 import ProduceShelf from 'comps/ProduceShelf';
 import FoodInfo from 'comps/FoodInfo';
+import Dropdown from 'comps/Dropdown'; 
+import Slider from 'comps/Slider';
+import IconSelect from 'comps/IconSelect'; 
+import AddButton from 'comps/adbutton';
+import DescInp from 'comps/input';
+import Bbut from 'comps/bbut';
+import BrBut from 'comps/brbut';
+
+//FoodList functions
+// const [clickedBullet, setClickedBullet] = useState(null);
 
 
 
@@ -54,7 +64,6 @@ const Main = () => {
   return <Container>
 
     <FoodList />
-
   </Container>
 }
 

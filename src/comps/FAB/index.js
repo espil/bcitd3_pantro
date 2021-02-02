@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import plus from '../../icons/plus.svg';
 
 const Container = styled.div`
-position: absolute;
+position: fixed;
+bottom:26px;
+right:26px;
 width: 64px;
 height: 64px;
 border-radius:32px;
