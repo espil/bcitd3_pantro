@@ -38,5 +38,5 @@ Slider.defaultProps = {
 
 }
 
-export default Slider 
+export default Slider;
 

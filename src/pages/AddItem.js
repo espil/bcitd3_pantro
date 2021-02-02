@@ -32,6 +32,7 @@ const Container = styled.div`
     color: #000000;
 }
   .sub{
+
     width: 81px;
     height: 19px;
     left: 26px;
@@ -63,6 +64,9 @@ const AddItem = () => {
       <Dropdown></Dropdown>
       <div className="sub">Amount </div> */}
       <Dropdown></Dropdown>
+      <div className="sub">Shelf </div>
+      <Dropdown></Dropdown>
+      <div className="sub">Storage </div>
       <Slider></Slider>
 
       <AddButton></AddButton>
