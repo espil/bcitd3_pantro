@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Shelves from "../comps/Shelves"
 import FoodList from "../comps/FoodList"
+import FAB from "../comps/FAB"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 
@@ -42,6 +43,7 @@ const Home = () => {
             <img className="image" src={sort} alt="sort" />
         </Header>
         <FoodList></FoodList>
+        <FAB></FAB>
     </Container>
 }
 

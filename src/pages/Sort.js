@@ -4,7 +4,6 @@ import AddButton from "../comps/adbutton.js"
 import Slider from "../comps/Slider"
 import Dropdown from "../comps/Dropdown"
 import BrBut from "../comps/brbut.js"
-import check from "../icons/check.svg"
 
 const Container = styled.div`
 display:flex;
