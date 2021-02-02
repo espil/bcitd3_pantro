@@ -10,29 +10,38 @@ const Button = styled.div`
   height: 57px;
   background-color:#23b3f2;  
   color: white;
-  font-size: 14px;
+  font-family: Pier Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
   cursor: pointer;
   border-radius:16px;
   display:flex;
   justify-content:center;
   align-items:center;
   & > img {
-    width: 20px;
-    height: 20px;
+    display:${props=>props.display_option ? props.display_option : "inline"};
+    width: 18px;
+    height: 18px;
   }
 `;
 
 
-const AddButton = () => {
+const AddButton = ({text}) => {
 
   return <Button>
-    <img src={restaurant}/>&nbsp;Add Item
-  </Button>
-
+    <img src={restaurant} />
+    &nbsp;{text}
+     </Button>
 
 }
 
-
-
+AddButton.defaultProps = {
+  text:"Add Item",
+  display_option:"none"
+}
 
 export default AddButton;

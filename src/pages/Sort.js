@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import AddButton from "../comps/adbutton.js"
 
 const Container = styled.div`
     display:flex;
@@ -14,7 +15,7 @@ const Sort = () => {
 
     return <Container>
 
-       
+       <AddButton display_option="none"></AddButton>
 
     </Container>
 }

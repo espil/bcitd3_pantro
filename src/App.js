@@ -5,7 +5,8 @@ import Sort from './pages/Sort.js';
 
 function App() {
   return (
-      <Item/>
+      // <Item/>
+      <Sort/>
   );
 }
 
