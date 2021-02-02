@@ -10,8 +10,6 @@ import FoodInfo from 'comps/FoodInfo';
 import Dropdown from 'comps/Dropdown'; 
 import Slider from 'comps/Slider';
 import IconSelect from 'comps/IconSelect'; 
-import styled from 'styled-components';
-
 import AddButton from 'comps/adbutton';
 import DescInp from 'comps/input';
 import Bbut from 'comps/bbut';
