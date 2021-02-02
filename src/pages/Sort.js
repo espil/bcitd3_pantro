@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import AddButton from "../comps/adbutton.js"
+import AddButton from "../comps/adbutton.js";
+import ShelfItem from 'comps/ShelfItem';
+import ListedItem from 'comps/ListedItem';
+import FoodList from 'comps/FoodList';
+import ProduceShelf from 'comps/ProduceShelf';
 
 const Container = styled.div`
     display:flex;
@@ -16,6 +20,14 @@ const Sort = () => {
     return <Container>
 
        <AddButton display_option="none"></AddButton>
+
+    {/*Used by Brittany, whilst testing.*/}
+    {/* <div>
+        <FoodList />
+        <ListedItem />
+        <ShelfItem />
+        <ProduceShelf />
+    </div> */}
 
     </Container>
 }
