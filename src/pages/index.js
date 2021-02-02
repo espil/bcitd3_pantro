@@ -15,6 +15,9 @@ import DescInp from 'comps/input';
 import Bbut from 'comps/bbut';
 import BrBut from 'comps/brbut';
 
+//FoodList functions
+// const [clickedBullet, setClickedBullet] = useState(null);
+
 
 
 //axios
@@ -60,9 +63,7 @@ const Main = () => {
 
   return <Container>
 
-
     <FoodList />
-
   </Container>
 }
 

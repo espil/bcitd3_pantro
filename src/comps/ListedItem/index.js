@@ -62,18 +62,20 @@ const TimeText = styled.div`
     padding-right: 20px;
 `;
 
-const ListedItem = (width, height, bulletcolor, foodname, expiry) => {
+const ListedItem = ({width, height, bulletcolor, foodname, expiry, onBulletSelect}) => {
 
     return <Container>
         <ListedName>
             <NameCont>
-                <Bullet /> 
+                <Bullet bulletcolor={bulletcolor} onClick={()=>{
+                onBulletSelect()
+            }}/> 
                 <ItemName>{foodname="Cucumber"}</ItemName>
             </NameCont>
         </ListedName>
         <TimeLeft>
             <TimeText>{expiry="5"} days</TimeText>
-            <Bullet width="15px" height="15px" bulletcolor="#70DA40"/>
+            <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
         </TimeLeft>
     </Container >
 }
@@ -83,7 +85,8 @@ ListedItem.defaultProps = {
     height: null,
     bulletcolor: null,
     foodname: null,
-    expiry: null
+    expiry: null,
+    onBulletSelect:()=>{}
 }
 
 export default ListedItem;

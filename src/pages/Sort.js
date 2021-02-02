@@ -1,5 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import AddButton from "../comps/adbutton.js";
+import ShelfItem from 'comps/ShelfItem';
+import ListedItem from 'comps/ListedItem';
+import FoodList from 'comps/FoodList';
+import ProduceShelf from 'comps/ProduceShelf';
 import AddButton from "../comps/adbutton.js"
 import Slider from "../comps/Slider"
 import Dropdown from "../comps/Dropdown"
@@ -53,6 +58,14 @@ const Sort = () => {
         <Dropdown></Dropdown>
         <Slider></Slider>
         <AddButton text="Sort Items"></AddButton>
+
+    {/*Used by Brittany, whilst testing.*/}
+    {/* <div>
+        <FoodList />
+        <ListedItem />
+        <ShelfItem />
+        <ProduceShelf />
+    </div> */}
 
     </Container>
 }
