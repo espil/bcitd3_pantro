@@ -17,7 +17,7 @@ max-width: 375px;
 min-height: 500px;
 max-height: 500px;
 
-& > .tit {
+& > .title {
   position: absolute;
   width: 146px;
   height: 22px;
@@ -128,7 +128,7 @@ const AddItem = () => {
 
     <BrBut />
 
-    <div className="tit">
+    <div className="title">
       Add an Item
     </div>
     <div className='name'>
