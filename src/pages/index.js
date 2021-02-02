@@ -14,6 +14,7 @@ import AddButton from 'comps/adbutton';
 import DescInp from 'comps/input';
 import Bbut from 'comps/bbut';
 import BrBut from 'comps/brbut';
+import AddItem from './AddItem';
 
 //FoodList functions
 // const [clickedBullet, setClickedBullet] = useState(null);
