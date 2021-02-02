@@ -22,6 +22,10 @@ const Button = styled.div`
   }
 `;
 
+function additem(a) {
+  a.preventDefault();
+  alert('The link was clicked')
+}
 
 const AddButton = () => {
 

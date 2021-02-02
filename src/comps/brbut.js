@@ -22,9 +22,14 @@ const Button = styled.div`
 `;
 
 
+function br(e) {
+  e.preventDefault();
+  alert('The link was clicked.');
+}
+
 const BrBut = () => {
 
-  return <Button>
+  return <Button onClick={br}>
     <img src={rarrow} />
   </Button>
 

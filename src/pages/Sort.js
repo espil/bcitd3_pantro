@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    display:flex;
-    align-item:center;
-    justify-content:center;
-    width: 375px;
-    height: 812px;
-    border:1px solid red;
+display:flex;
+flex-direction:column;
+width: 323px;
+height: 760px;
+border:1px solid red;
+padding:26px;
 `;
 
 const Sort = () => {

@@ -7,10 +7,6 @@ import ListedItem from 'comps/ListedItem';
 import FoodList from 'comps/FoodList';
 import ProduceShelf from 'comps/ProduceShelf';
 import FoodInfo from 'comps/FoodInfo';
-import AddButton from 'comps/adbutton';
-import DescInp from 'comps/input';
-import Bbut from 'comps/bbut';
-import BrBut from 'comps/brbut';
 
 
 
