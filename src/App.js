@@ -9,7 +9,7 @@ function App() {
   return (
       // <Item/>
       // <Sort/>
-      <Home/>
+      <AddItem/>
   );
 }
 
