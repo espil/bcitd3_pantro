@@ -1,42 +1,107 @@
-import React from 'react'; 
-import styled from 'styled-components'; 
+import React, {useState} from 'react'; 
+import styled from 'styled-components';
 
-const SliderContainer = styled.div`
-    min-width: 323px; 
-    max-height: 46px; 
-    background-color: #F6F6FB; 
-    display: flex; 
-    border-radius: 18px;
-    justify-content: space-between; 
-    align-items: center; 
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
 `; 
 
-const SliderText = styled.p`
-    color: black; 
-    font-size: 14px; 
-    margin: 0px 30px 0px 30px; 
-    position: relative; 
+const ImageContainer = styled.img`
+    display: flex; 
+    margin-left: 90%;
+    margin-top: 5%; 
+    user-select: none; 
+    transform:${props=>props.expanded ? "rotate(0deg)" : "rotate(-180deg)"};
+    transition: 0.3s;
+`; 
+
+const DropdownInputContainer = styled.div`
+    max-width: 323px; 
+    min-height: 39px; 
+    background-color: #F6F6FB; 
+    border-radius: 13px; 
+    cursor: pointer;
+    &:hover {
+        background-color: #C7C7C7; 
+        transition: 0.3s; 
+    }
+`; 
+
+const DropdownContainer = styled.div`
+    min-height: 133px; 
+    max-width: 323px; 
+    background-color: #F6F6FB;
+    display:${props=>props.expanded ? "inline-flex" : "hidden"};
+    height:${props=>props.expanded ? "auto" : "0px"};
+    opacity:${props=>props.expanded ? 1 : 0};
+    transition:opacity 0.5s;
+    flex-direction:column;
+    margin-top: 20px; 
+    border-radius: 13px;
+    & > div {
+        padding: 10px 0px 10px 10px;
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        user-select: none;
+    }
 `;
 
-const SliderPick = styled.div`
-    max-width: 104px; 
-    max-height: 38px; 
-    background-color: #FF7750; 
-    border-radius: 16px; 
-    display: flex; 
+const TopText = styled.p`
+    color: black; 
+    font-weight: bold; 
+    margin-left: 0.5vw;
+    user-select: none; 
 `; 
 
-const Slider = () => {
-    return <SliderContainer>
-        <SliderText>Fridge</SliderText>
-        <SliderText>Pantry</SliderText>
-        <SliderText>Freezer</SliderText>
-    </SliderContainer>
+const ItemOne = styled.div`
+border-radius: 13px; 
+&:hover {
+    background-color: #FF7750; 
+    color: white; 
+    transition: 0.25s; 
+}
+`; 
+
+const ItemTwo = styled.div`
+border-radius: 13px; 
+&:hover {
+    background-color: #FF7750; 
+    color: white; 
+    transition: 0.25s; 
+}
+`; 
+
+const ItemThree = styled.div`
+border-radius: 13px; 
+&:hover {
+    background-color: #FF7750; 
+    color: white; 
+    transition: 0.25s; 
+}
+`; 
+
+
+const ChoiceSlider = () => {
+
+    const [expanded, setExpanded] = useState(false); 
+
+    return <Container>
+    <TopText>Storage</TopText>
+    <DropdownInputContainer onClick={()=>{
+        setExpanded(!expanded)
+    }}>
+        <ImageContainer src="/DownCadet.png" onClick={()=>{
+            setExpanded(!expanded)
+        }}/>
+    </DropdownInputContainer>
+    <DropdownContainer expanded={expanded}>
+        <ItemOne>Fridge</ItemOne>
+        <ItemTwo>Pantry</ItemTwo>
+        <ItemThree>Freezer</ItemThree>
+    </DropdownContainer>
+    </Container> 
 }
 
-Slider.defaultProps = {
-
-}
-
-export default Slider;
-
+export default ChoiceSlider;     
