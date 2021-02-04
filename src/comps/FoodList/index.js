@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import "../../App.css";
 import ListedItem from "../ListedItem";
 import utensils from '../../icons/utensils.svg';
 import settings from '../../icons/settings.svg';
