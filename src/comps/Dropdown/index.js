@@ -16,7 +16,7 @@ const ImageContainer = styled.img`
 `; 
 
 const DropdownInputContainer = styled.div`
-    min-width: 323px; 
+    max-width: 323px; 
     min-height: 39px; 
     background-color: #F6F6FB; 
     border-radius: 13px; 
@@ -30,7 +30,7 @@ const DropdownInputContainer = styled.div`
 
 const DropdownContainer = styled.div`
     min-height: 133px; 
-    min-width: 323px; 
+    max-width: 323px; 
     background-color: #F6F6FB;
     display:${props=>props.expanded ? "inline-flex" : "hidden"};
     height:${props=>props.expanded ? "auto" : "0px"};
@@ -56,6 +56,42 @@ const TopText = styled.p`
     user-select: none; 
 `; 
 
+const ItemOne = styled.div`
+border-radius: 13px; 
+&:hover {
+    background-color: #B0B0B0; 
+    color: white; 
+    transition: 0.25s; 
+}
+`; 
+
+const ItemTwo = styled.div`
+border-radius: 13px; 
+&:hover {
+    background-color: #B0B0B0; 
+    color: white; 
+    transition: 0.25s; 
+}
+`; 
+
+const ItemThree = styled.div`
+border-radius: 13px; 
+&:hover {
+    background-color: #B0B0B0; 
+    color: white; 
+    transition: 0.25s; 
+}
+`; 
+
+const ItemFour = styled.div`
+border-radius: 13px; 
+&:hover {
+    background-color: #B0B0B0; 
+    color: white; 
+    transition: 0.25s; 
+}
+`; 
+
 const Dropdown = () => {
 
     const [expanded, setExpanded] = useState(false); 
@@ -70,10 +106,10 @@ const Dropdown = () => {
         }}/>
     </DropdownInputContainer>
     <DropdownContainer expanded={expanded}>
-        <div>Produce</div>
-        <div>Dairy</div>
-        <div>Grains</div>
-        <div>None</div>
+        <ItemOne>Produce</ItemOne>
+        <ItemTwo>Dairy</ItemTwo>
+        <ItemThree>Grains</ItemThree>
+        <ItemFour>None</ItemFour>
     </DropdownContainer>
     </Container> 
 }
