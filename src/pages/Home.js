@@ -7,6 +7,7 @@ import FoodList from "../comps/FoodList"
 import FAB from "../comps/FAB"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
+import IconSelect from 'comps/IconSelect'; 
 
 const Container = styled.div`
 width: 375px;
@@ -36,17 +37,17 @@ text-align: left;
 const Home = () => {
 
     return <Container>
-        <Shelves></Shelves>
-        <Header>
-            <div>
-                <img className="image" src={restaurant} alt="restaurant" />
-                <div>&nbsp;My Food</div>
-            </div>
-            <img className="image" src={sort} alt="sort" />
-        </Header>
-        <FoodList></FoodList>
-        <FAB></FAB>
-    </Container>
+         <Shelves></Shelves>
+         <Header>
+             <div>
+                 <img className="image" src={restaurant} alt="restaurant" />
+                 <div>&nbsp;My Food</div>
+             </div>
+             <img className="image" src={sort} alt="sort" />
+         </Header>
+         <FoodList></FoodList>
+         <FAB></FAB>
+     </Container>
 }
 
 export default Home;
