@@ -1,3 +1,5 @@
+//THIS PAGE MAY BE IRRELEVANT **** (Britt)
+
 import React from 'react';
 import styled from 'styled-components';
 import ShelfItem from "comps/ShelfItem";
@@ -25,13 +27,13 @@ const Container = styled.div`
 const ProduceShelf = (width, height, img, foodname) => {
 
     return <Container>
+        {/* <ShelfItem />
         <ShelfItem />
         <ShelfItem />
         <ShelfItem />
         <ShelfItem />
         <ShelfItem />
-        <ShelfItem />
-        <ShelfItem />
+        <ShelfItem /> */}
     </Container >
 }
 

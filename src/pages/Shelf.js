@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import ShelfItem from 'comps/ShelfItem';
 import ListedItem from 'comps/ListedItem';
 import FoodList from 'comps/FoodList';
-import ProduceShelf from 'comps/ProduceShelf';
+// import ProduceShelf from 'comps/ProduceShelf';
 import BrBut from "../comps/brbut.js";
 
 const Container = styled.div`
@@ -26,17 +26,36 @@ const ItemName = styled.div`
     margin: 52px 0px;
 `;
 
+const ProduceShelf = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 100%;
+    max-width: 100%;
+    height: fit-content;
+`;
 
-const Sort = () => {
+const ProShelf = () => {
+
+    // const [produceShelfClick, setProduceShelfClick] --- working on this part
 
     return <Container>
         <BrBut />
         <ItemName>Produce</ItemName>
-       <ProduceShelf />
+       <ProduceShelf>
+            <ShelfItem />
+            <ShelfItem />
+            <ShelfItem />
+            <ShelfItem />
+            <ShelfItem />
+            <ShelfItem />
+            <ShelfItem />
+       </ProduceShelf>
 
 
 
     </Container>
 }
 
-export default Sort;
+export default ProShelf;

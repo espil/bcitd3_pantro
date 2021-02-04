@@ -39,7 +39,7 @@ const ItemName = styled.div`
 `;
 
 
-const ShelfItem = ({width, height, foodname, onItemClick}) => {
+const ShelfItem = ({width, height, foodname, img, onItemClick}) => {
 
     return <Container>
         <SquareIcon onClick={()=>{
