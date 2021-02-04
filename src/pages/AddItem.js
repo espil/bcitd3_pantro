@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import BrBut from 'comps/brbut';
 import AddButton from 'comps/adbutton';
-import Slider from 'comps/Slider';
+import ChoiceSlider from 'comps/Slider'; 
 import Input from 'comps/input';
 import Dropdown from 'comps/Dropdown';
 
@@ -97,7 +97,7 @@ const AddItem = () => {
       <Input></Input>      
       <Dropdown></Dropdown>
       <div className="sub">Storage </div>
-      <Slider></Slider>
+      <ChoiceSlider></ChoiceSlider>
       <AddButton></AddButton>
     </Container>
 
