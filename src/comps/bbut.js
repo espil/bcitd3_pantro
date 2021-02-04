@@ -26,15 +26,20 @@ const Button = styled.div`
 `;
 
 
+function b(e) {
+  e.preventDefault();
+  alert('The link was clicked.');
+}
+
 const Bbut = () => {
 
-  return <Button>
+
+  return <Button onClick={b}>
     <img src={arrow}/>
   </Button>
 
 
 }
-
 
 
 

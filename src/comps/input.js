@@ -35,7 +35,7 @@ const Input = styled.input`
 
 const DescInp = () => {
 
-  return <div><div className="desc">Add Description
+  return <div><div className="desc">
     <Input>
   </Input>
   </div>

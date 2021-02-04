@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import "../../App.css";
 import cucumber from '../../img/veg/cucumber.png';
 import beets from '../../img/veg/beets.png';
 import carrots from '../../img/veg/carrots.png';
