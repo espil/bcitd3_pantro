@@ -2,14 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import restaurant from '../icons/restaurant.svg';
-import sort from '../icons/settings.svg';
+// import sort from '../icons/settings.svg';
 
 
 const Button = styled.div`
   width: 323px;
   height: 57px;
-  position:absolute;
-  bottom:52px;
   background-color:#23b3f2;  
   color: white;
   font-family: Pier Sans;
@@ -30,11 +28,15 @@ const Button = styled.div`
   }
 `;
 
+function additem(a) {
+  a.preventDefault();
+  alert('The link was clicked')
+}
 
 const AddButton = ({text}) => {
 
   return <Button>
-    <img src={sort} />
+    <img src={restaurant} />
     &nbsp;{text}
      </Button>
 

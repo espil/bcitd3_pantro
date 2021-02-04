@@ -104,8 +104,4 @@ const ChoiceSlider = () => {
     </Container> 
 }
 
-ChoiceSlider.defaultProps = {
-
-}
-
 export default ChoiceSlider;     

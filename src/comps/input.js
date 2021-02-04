@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Input = styled.input`
-  position: absolute;
   width: 323px;
   height: 39px;
   background-color:#F6F6FB;  
@@ -35,7 +34,7 @@ const Input = styled.input`
 
 const DescInp = () => {
 
-  return <div><div className="desc">Add Description
+  return <div><div className="desc">
     <Input>
   </Input>
   </div>
