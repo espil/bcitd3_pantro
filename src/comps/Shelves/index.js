@@ -113,7 +113,7 @@ const Shelves = ({ shelfDatabase }) => {
         <div className="header">{o.name}</div>
         <div className="subheader">{o.description}</div>
       </Shelf>)}
-      <Link to="../../pages/AddItem" style={{ textDecoration: 'none', color: "black" }}>
+      <Link to="AddItem" style={{ textDecoration: 'none', color: "black" }}>
         <Shelf >
           <img className="image" src={add} alt="icon" />
           <div className="header">Add Shelf</div>

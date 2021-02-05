@@ -52,7 +52,7 @@ const AddItem = () => {
 
 
   return <Container>
-    <BrBut></BrBut>
+    <Link to="/Home"><BrBut></BrBut></Link>
     <div className="header">Add an Item</div>
     <div className="sub">Item Name</div>
     <Input></Input>

@@ -9,7 +9,6 @@ import ListedItem from "../comps/ListedItem"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 import { Link } from "react-router-dom";
-import AddItem from "../pages/AddItem";
 
 const Container = styled.div`
 width: 375px;
@@ -50,7 +49,7 @@ const Home = () => {
             </Link>
         </Header>
         <div>
-            <Link to="/Additem">
+            <Link to="/Item">
                 <ListedItem />
             </Link>
             <ListedItem />
@@ -64,8 +63,8 @@ const Home = () => {
             <ListedItem />
             <ListedItem />
         </div>
-        <Link to="/">
-            <FAB></FAB>
+        <Link to="/additem">
+            <FAB />
         </Link>
     </Container>
 }
