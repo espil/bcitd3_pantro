@@ -22,7 +22,10 @@ const Button = styled.div`
   & > img {
     width: 20px;
     height: 16.58px;
-  }
+  }    &:hover {
+    transform: scale(1.2); 
+    transition: 0.2s; 
+}
 `;
 
 
