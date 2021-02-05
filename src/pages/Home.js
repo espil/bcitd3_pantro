@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChoiceSlider from 'comps/Slider';
 import Dropdown from 'comps/Dropdown';
 import Shelves from "../comps/Shelves"
 import FoodList from "../comps/FoodList"
@@ -13,7 +12,7 @@ import AddItem from "../pages/AddItem";
 
 const Container = styled.div`
 width: 375px;
-border:1px solid white;
+overflow-x: hidden;
 `;
 
 const Header = styled.div`
@@ -51,21 +50,15 @@ const Home = () => {
             </Link>
         </Header>
         <div>
-            <Link to="/Additem">
+            <Link to="/item">
                 <ListedItem />
             </Link>
             <ListedItem />
             <ListedItem />
             <ListedItem />
             <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
         </div>
-        <Link to="/">
+        <Link to="/add-item">
             <FAB></FAB>
         </Link>
     </Container>

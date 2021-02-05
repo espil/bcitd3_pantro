@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import restaurant from '../icons/restaurant.svg';
-// import sort from '../icons/settings.svg';
-
+import restaurant from '../../icons/restaurant.svg';
 
 const Button = styled.div`
   width: 323px;
@@ -22,6 +19,8 @@ const Button = styled.div`
   display:flex;
   justify-content:center;
   align-items:center;
+  position:fixed;
+  bottom:78px;
   & > img {
     width: 18px;
     height: 18px;
@@ -39,7 +38,6 @@ const AddButton = ({text}) => {
     <img src={restaurant} />
     &nbsp;{text}
      </Button>
-
 }
 
 AddButton.defaultProps = {
