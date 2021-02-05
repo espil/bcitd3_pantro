@@ -39,7 +39,7 @@ const DropdownOption = styled.option`
 
 const AddItem = () => {
   return <Container>
-    <BrBut></BrBut>
+    <Link to="/Home"><BrBut></BrBut></Link>
     <div className="header">Add an Item</div>
     <Input header="Item Name" />
     <Input type="date" header="Expiry Date (dd/mm/yyyy)" />
