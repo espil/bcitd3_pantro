@@ -5,6 +5,7 @@ import Input from 'comps/Input';
 import BrBut from "../comps/BackButtonC/index.js";
 import AddButton from '../comps/AddButton/index.js';
 import shelf from '../icons/shelf.png';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 display:flex;
@@ -31,7 +32,9 @@ const AddShelf = () => {
         <Input header="Shelf Name" />
         <Input header="Description" />
         <IconSelect />
-        <AddButton text="Add Shelf" src={shelf} />
+        <Link to="/">
+            <AddButton text="Add Shelf" src={shelf} />
+        </Link>
     </Container>
 }
 

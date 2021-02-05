@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+const items = require("../../fakeDatabase.json");
 
 const Container = styled.div`
 background-color:white;
@@ -157,55 +158,11 @@ padding-bottom:13px;
 }
 `
 
-const fakeItemDB = [
-    {
-        id: 1,
-        name: "Cucumbers",
-        expiry: 20,
-        amount: 3,
-        shelf: "Produce",
-        storage: "Fridge",
-    }
-]
-
-const fakeNutritionDB = [
-    {
-        id: 1,
-        nutrient: "Calories",
-        amount: 200,
-    },
-    {
-        id: 2,
-        nutrient: "Protein",
-        amount: 200,
-    },
-    {
-        id: 3,
-        nutrient: "Carbs",
-        amount: 200,
-    },
-    {
-        id: 4,
-        nutrient: "Carbs",
-        amount: 200,
-    },
-    {
-        id: 5,
-        nutrient: "Carbs",
-        amount: 200,
-    },
-    {
-        id: 6,
-        nutrient: "Carbs",
-        amount: 200,
-    },
-]
-
-const FoodInfo = ({ itemDatabase, nutritionDatabase }) => {
+const FoodInfo = () => {
 
     return <Container>
 
-        {itemDatabase.map(o => <Header>
+        {items.map(o => <Header>
             <div className="food_name">{o.name}</div>
             <div className="expiry_date">
                 <div className="expiry">expires in {o.expiry} days</div>
@@ -213,22 +170,22 @@ const FoodInfo = ({ itemDatabase, nutritionDatabase }) => {
             </div>
         </Header>)}
 
-        <Macros>
+        {items.map(o=><Macros>
             <div>
-                <div className="macro_number">10</div>
+                <div className="macro_number">{o.protein}?</div>
                 <div className="macro_name">Protein</div>
             </div>
             <div className="middle">
-                <div className="macro_number">20</div>
+                <div className="macro_number">{o.carbs}?</div>
                 <div className="macro_name">Carbs</div>
             </div>
             <div>
-                <div className="macro_number">30</div>
+                <div className="macro_number">{o.fat}?</div>
                 <div className="macro_name">Fat</div>
             </div>
-        </Macros>
+        </Macros>)}
 
-        {itemDatabase.map(o => <StorageInfo>
+        {items.map(o => <StorageInfo>
             <div className="info_cont">
                 <div className="info_header">Amount</div>
                 <div className="info_text">{o.amount} items are currently stored</div>
@@ -247,14 +204,10 @@ const FoodInfo = ({ itemDatabase, nutritionDatabase }) => {
             <div className="nutrition_head">
                 Nutrition Facts
             </div>
-            {nutritionDatabase.map(o => <div>
+            {items.map(o => <div>
                 <div className="dark_grey">
-                    <div>{o.nutrient}</div>
-                    <div>{o.amount} g</div>
-                </div>
-                <div className="light_grey">
-                    <div>{o.nutrient}</div>
-                    <div>{o.amount} g</div>
+                    <div>{o.nutrient}?</div>
+                    <div>{o.grams}? g</div>
                 </div>
             </div>)}
         </Nutrition>
@@ -263,8 +216,7 @@ const FoodInfo = ({ itemDatabase, nutritionDatabase }) => {
 }
 
 FoodInfo.defaultProps = {
-    itemDatabase: fakeItemDB,
-    nutritionDatabase: fakeNutritionDB,
+
 }
 
 export default FoodInfo;

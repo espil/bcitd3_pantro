@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dropdown from 'comps/Dropdown';
 import Shelves from "../comps/Shelves"
-import FoodList from "../comps/FoodList"
 import FAB from "../comps/FAB"
 import ListedItem from "../comps/ListedItem"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 import { Link } from "react-router-dom";
-import AddItem from "../pages/AddItem";
+
+const items = require("../fakeDatabase.json");
 
 const Container = styled.div`
 width: 375px;
@@ -49,15 +48,7 @@ const Home = () => {
                 <img className="image" src={sort} alt="sort" />
             </Link>
         </Header>
-        <div>
-            <Link to="/item">
-                <ListedItem />
-            </Link>
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-        </div>
+        <ListedItem />
         <Link to="/add-item">
             <FAB></FAB>
         </Link>
