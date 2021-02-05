@@ -1,48 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import arrow from '../icons/arrow.svg';
+import rarrow from '../../icons/rarrow.svg';
 
 
 const Button = styled.div`
   position: absolute;
   top:26px;
   left:26px;
-  width: 36px;
-  height: 36px;
-  background-color:#fff;  
+  width:24px;
+  height:24px;
   cursor: pointer;
-  border-radius:18px;
-  box-shadow: 0px 7px 7px 3px rgba(0, 0, 0, 0.25);
-  shadowOpacity: 0.8;
-  shadow-offset: {width: 0, height: 2};
   display:flex;
   justify-content:center;
   align-items:center;
   & > img {
-    width: 20px;
-    height: 16.58px;
+    width: 24px;
+    height: 20.58px;
   }
+  .iconpath path{
+    stroke: #FF7750;
+  }    &:hover {
+    transform: scale(1.2); 
+    transition: 0.2s; 
+}
 `;
 
 
-// function b(e) {
+// function br(e) {
 //   e.preventDefault();
 //   alert('The link was clicked.');
 // }
 
-const Bbut = () => {
-
+const BrBut = () => {
 
   return <Link to="/">
-    <Button>
-      <img src={arrow} />
+    <Button >
+      <img src={rarrow} />
     </Button>
-  </Link >
-
-
+  </Link>
 }
 
 
 
-export default Bbut;
+
+export default BrBut;

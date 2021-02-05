@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChoiceSlider from 'comps/Slider';
-import Dropdown from 'comps/Dropdown';
 import Shelves from "../comps/Shelves"
-import FoodList from "../comps/FoodList"
 import FAB from "../comps/FAB"
 import ListedItem from "../comps/ListedItem"
 import restaurant from '../icons/restaurant_black.svg';
@@ -12,6 +9,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
 width: 375px;
+overflow-x: hidden;
 `;
 
 const Header = styled.div`
@@ -48,23 +46,9 @@ const Home = () => {
                 <img className="image" src={sort} alt="sort" />
             </Link>
         </Header>
-        <div>
-            <Link to="/Item">
-                <ListedItem />
-            </Link>
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-            <ListedItem />
-        </div>
-        <Link to="/additem">
-            <FAB />
+        <ListedItem />
+        <Link to="/add-item">
+            <FAB></FAB>
         </Link>
     </Container>
 }

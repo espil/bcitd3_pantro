@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import AddButton from "../comps/adbutton.js";
-import Slider from "../comps/Slider"
+import AddButton from "../comps/AddButton/index.js";
 import Dropdown from "../comps/Dropdown"
-import BrBut from "../comps/brbut.js"
+import BrBut from "../comps/BackButtonC/index.js"
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
 display:flex;
 flex-direction:column;
 width: 323px;
-height: 760px;
+height: 730px;
 padding:26px;
 .header{
     font-family: Pier Sans;
@@ -20,7 +19,7 @@ padding:26px;
     line-height: 29px;
     letter-spacing: 0em;
     text-align: left;
-    margin:52px 0px;
+    margin:52px 0px 26px 0px;
 }
 .select{
     font-family: Pier Sans;
@@ -45,16 +44,10 @@ const Sort = () => {
     return <Container>
         <BrBut></BrBut>
         <div className="header">Sort & Filter</div>
-        <select className="select">
-            <option>Oldest</option>
-            <option>Freshest</option>
-            <option>Alphabetical (A-Z)</option>
-            <option>Reverse Alphabetical (Z-A)</option>
-        </select>
-        <Dropdown></Dropdown>
-        <Slider></Slider>
+        <Dropdown header="Sort By"></Dropdown>
+        <Dropdown header="Sort By"></Dropdown>
         <Link to="/">
-        <AddButton text="Sort Items"></AddButton>
+            <AddButton text="Sort Items"></AddButton>
         </Link>
 
     </Container>

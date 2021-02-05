@@ -1,0 +1,177 @@
+[
+    {
+        "id": 0,
+        "name": "Cucumber",
+        "expiry": 6,
+        "amount": 3,
+        "storage": "fridge",
+        "shelf": "fridge",
+        "nutrition": [
+            {
+                "id": 0,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 1,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 2,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 3,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 4,
+                "nutrient": "Calories",
+                "grams": 200
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Peanut Butter",
+        "expiry": 45,
+        "amount": 1,
+        "storage": "Pantry",
+        "shelf": "Carbs",
+        "nutrition": [
+            {
+                "id": 0,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 1,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 2,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 3,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 4,
+                "nutrient": "Calories",
+                "grams": 200
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Tomato Soup",
+        "expiry": 625,
+        "amount": 10,
+        "storage": "Pantry",
+        "shelf": "Canned Goods",
+        "nutrition": [
+            {
+                "id": 0,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 1,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 2,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 3,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 4,
+                "nutrient": "Calories",
+                "grams": 200
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Frozen Pizza",
+        "expiry": 294,
+        "amount": 1,
+        "storage": "Freezer",
+        "shelf": "Junk Food",
+        "nutrition": [
+            {
+                "id": 0,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 1,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 2,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 3,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 4,
+                "nutrient": "Calories",
+                "grams": 200
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Sushi",
+        "expiry": 3,
+        "amount": 2,
+        "storage": "Fridge",
+        "shelf": "Seafood",
+        "nutrition": [
+            {
+                "id": 0,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 1,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 2,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 3,
+                "nutrient": "Calories",
+                "grams": 200
+            },
+            {
+                "id": 4,
+                "nutrient": "Calories",
+                "grams": 200
+            }
+        ]
+    }
+]
