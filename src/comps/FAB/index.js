@@ -17,6 +17,9 @@ align-items:center;
 & > img {
   width: 24px;
   height: 24px;
+}    &:hover {
+  transform: scale(1.2); 
+  transition: 0.2s; 
 }
 `
 

@@ -20,7 +20,10 @@ const Button = styled.div`
   }
   .iconpath path{
     stroke: #FF7750;
-  }
+  }    &:hover {
+    transform: scale(1.2); 
+    transition: 0.2s; 
+}
 `;
 
 
