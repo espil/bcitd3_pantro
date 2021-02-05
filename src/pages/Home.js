@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
 width: 375px;
+border:1px solid white;
 `;
 
 const Header = styled.div`
