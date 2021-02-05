@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import rarrow from '../icons/rarrow.svg';
+import rarrow from '../../icons/rarrow.svg';
 
 
 const Button = styled.div`

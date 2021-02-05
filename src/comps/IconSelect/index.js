@@ -7,9 +7,9 @@ const IconContainer = styled.div`
 
 const TopText = styled.p`
     color: black; 
-    margin-left: 0.7vw;
+    font-weight: bold; 
+    margin-left: 0.5vw;
     user-select: none; 
-    font-size: 16px; 
 `;
 
 const IconRowOne = styled.div`
@@ -46,7 +46,7 @@ const IconSelect = () => {
     const [chosen, setChosen] = useState(false);
 
     return <IconContainer>
-        <TopText>Icon</TopText>
+        <TopText>Select an Icon</TopText>
         <IconRowOne>
             <IconPicture src="LettuceIcon.png" chosen={chosen} onClick={() =>{
                 setChosen(!chosen)

@@ -1,13 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import cucumber from '../../img/veg/cucumber.png';
-// import beets from '../../img/veg/beets.png';
-// import carrots from '../../img/veg/carrots.png';
-// import celery from '../../img/veg/celery.png';
-// import cilantro from '../../img/veg/cilantro.png';
-// import leek from '../../img/veg/leek.png';
-// import tomato from '../../img/veg/tomato.png';
-
 
 const Container = styled.div`
     display: flex;

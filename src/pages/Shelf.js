@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import ShelfItem from 'comps/ShelfItem';
-import BrBut from "../comps/brbut.js";
+import BrBut from "../comps/BackButtonC/index.js";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`

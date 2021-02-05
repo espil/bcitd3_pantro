@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import arrow from '../icons/arrow.svg';
+import arrow from '../../icons/arrow.svg';
 
 
 const Button = styled.div`

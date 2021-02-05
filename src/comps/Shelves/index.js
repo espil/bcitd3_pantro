@@ -1,8 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import vegetables from '../../icons/vegetables.svg';
-import dairy from '../../icons/dairy.svg';
-import seafood from '../../icons/seafood.svg';
 import add from '../../icons/add.svg';
 import shelves from '../../icons/shelves.svg';
 import { Link } from "react-router-dom";
@@ -37,9 +34,6 @@ display: flex;
 flex-wrap: nowrap;
 overflow-x: auto;
 -webkit-overflow-scrolling: touch;
-// &::-webkit-scrollbar {
-//   display: none;
-// }
 `
 
 const Shelf = styled.div`
@@ -109,11 +103,13 @@ const Shelves = ({ shelfDatabase }) => {
     </Header>
     <ShelfContainer>
       {shelfDatabase.map((o, i) => <Shelf>
-        <img className="image" src={o.icon} alt="icon" />
-        <div className="header">{o.name}</div>
-        <div className="subheader">{o.description}</div>
+        <Link to="/shelf" style={{ textDecoration: 'none', color: "black" }}>
+          <img className="image" src={o.icon} alt="icon" />
+          <div className="header">{o.name}</div>
+          <div className="subheader">{o.description}</div>
+        </Link>
       </Shelf>)}
-      <Link to="../../pages/AddItem" style={{ textDecoration: 'none', color: "black" }}>
+      <Link to="/add-shelf" style={{ textDecoration: 'none', color: "black" }}>
         <Shelf >
           <img className="image" src={add} alt="icon" />
           <div className="header">Add Shelf</div>
