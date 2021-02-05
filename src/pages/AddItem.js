@@ -5,6 +5,10 @@ import AddButton from 'comps/AddButton';
 import Input from 'comps/Input';
 import Dropdown from 'comps/Dropdown';
 import { Link } from "react-router-dom";
+import DatePicker from 'react-date-picker';
+const items = require("../fakeDatabase.json");
+
+
 
 const Container = styled.div`
 display:flex;
@@ -24,25 +28,16 @@ padding:26px;
 }
 `;
 
-const DropdownOption = styled.option`
-    min-height: 133px; 
-    max-width: 323px; 
-    background-color: #F6F6FB;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 13px; 
-    &:hover {
-        background-color: #C7C7C7; 
-        transition: 0.3s; 
-    }
-`;
-
 const AddItem = () => {
+  const [value, onChange] = useState(new Date());
   return <Container>
     <Link to="/Home"><BrBut></BrBut></Link>
     <div className="header">Add an Item</div>
     <Input header="Item Name" />
-    <Input type="date" header="Expiry Date (dd/mm/yyyy)" />
+    <div className="sub">Expiry Date (dd/mm/yyyy)</div>
+    <DatePicker        
+    onChange={onChange}
+    value={value}/>
     <Input header="Amount" />
     <Dropdown header="Shelf" />
     <Dropdown header="Storage" />
