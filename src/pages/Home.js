@@ -7,8 +7,6 @@ import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 import { Link } from "react-router-dom";
 
-const items = require("../fakeDatabase.json");
-
 const Container = styled.div`
 width: 375px;
 overflow-x: hidden;

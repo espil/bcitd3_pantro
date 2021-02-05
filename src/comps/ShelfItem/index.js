@@ -1,57 +1,60 @@
 import React from 'react';
 import styled from 'styled-components';
 import cucumber from '../../img/veg/cucumber.png';
+const items = require("../../fakeDatabase.json");
 
 const Container = styled.div`
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 52px 0px;
+.center{
+    display: flex;
+    justify-content:center;
+}
+`;
+
+const ShelfCont = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-width:${props=>props.width ? props.width : '33%'};
-    max-width:${props=>props.width ? props.width : '33%'};
-    height: fit-content;
-    margin-bottom: 30px;
+    justify-content:center;
+    align-items:center;
 `;
 
 const SquareIcon = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 70px;
+    width: 70px;
     height: 70px;
     background-color: #F6F6FB;
-    border-radius: 10px;
-    object-fit: cover;
+    border-radius: 24px;
+    object-fit: contain;
 `;
 
 const ItemName = styled.div`
     color: #808080;
     font-size: 16px; 
     font-family: 'PierSans';
-    padding: 5px;
+    padding-top: 5px;
 `;
 
 
-const ShelfItem = ({width, height, foodname, img, onItemClick}) => {
+const ShelfItem = () => {
 
     return <Container>
-        <SquareIcon onClick={()=>{
-                onItemClick()
-            }}>
-            <img src={cucumber} width='55px' height='50px' />
-        </SquareIcon>
-        <ItemName>
-            <div>{foodname="Cucumber"}</div>
-        </ItemName>
-    </Container >
+
+        {items.map(o => <div className="center"><ShelfCont>
+            <SquareIcon >
+                <img src={cucumber} width='55px' height='55px' />
+            </SquareIcon>
+            <ItemName>{o.name}</ItemName>
+        </ShelfCont >  </div>)}
+
+    </Container>
 }
 
 ShelfItem.defaultProps = {
-    width:null,
-    height:null,
-    foodname: null,
-    onItemClick:()=>{},
-    img: null
+
 }
 
 export default ShelfItem;

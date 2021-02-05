@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ShelfItem from 'comps/ShelfItem';
 import BrBut from "../comps/BackButtonC/index.js";
@@ -12,7 +12,6 @@ const Container = styled.div`
     width: 323px;
     height: 760px;
     padding:26px;
-
 `;
 
 const ItemName = styled.div`
@@ -21,17 +20,7 @@ const ItemName = styled.div`
     font-family: 'PierSans';
     font-style: normal;
     font-weight: 700;
-    margin: 52px 0px;
-`;
-
-const ProduceShelf = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    min-width: 100%;
-    max-width: 100%;
-    height: fit-content;
+    margin:52px 0px;
 `;
 
 const ProShelf = () => {
@@ -40,19 +29,8 @@ const ProShelf = () => {
 
     return <Container>
         <BrBut />
-        <ItemName>Produce</ItemName>
-       <ProduceShelf>
-            <ShelfItem />
-            <ShelfItem />
-            <ShelfItem />
-            <ShelfItem />
-            <ShelfItem />
-            <ShelfItem />
-            <ShelfItem />
-       </ProduceShelf>
-
-
-
+        <ItemName>Shelf Name</ItemName>
+        <ShelfItem />
     </Container>
 }
 
