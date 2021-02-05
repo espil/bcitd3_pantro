@@ -4,6 +4,7 @@ import BrBut from 'comps/BackButtonC';
 import AddButton from 'comps/AddButton';
 import Input from 'comps/Input';
 import Dropdown from 'comps/Dropdown';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 display:flex;
@@ -45,7 +46,9 @@ const AddItem = () => {
     <Input header="Amount" />
     <Dropdown header="Shelf" />
     <Dropdown header="Storage" />
-    <AddButton></AddButton>
+    <Link to="/">
+      <AddButton></AddButton>
+    </Link>
   </Container>
 }
 

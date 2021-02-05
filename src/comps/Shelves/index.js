@@ -102,19 +102,23 @@ const Shelves = ({ shelfDatabase }) => {
       <div>&nbsp;My Shelves</div>
     </Header>
     <ShelfContainer>
-      {shelfDatabase.map((o, i) => <Shelf>
+      {shelfDatabase.map((o, i) => <div>
         <Link to="/shelf" style={{ textDecoration: 'none', color: "black" }}>
-          <img className="image" src={o.icon} alt="icon" />
-          <div className="header">{o.name}</div>
-          <div className="subheader">{o.description}</div>
+          <Shelf>
+            <img className="image" src={o.icon} alt="icon" />
+            <div className="header">{o.name}</div>
+            <div className="subheader">{o.description}</div>
+          </Shelf>
         </Link>
-      </Shelf>)}
+      </div>)}
       <Link to="/add-shelf" style={{ textDecoration: 'none', color: "black" }}>
-        <Shelf >
-          <img className="image" src={add} alt="icon" />
-          <div className="header">Add Shelf</div>
-          <div className="subheader">Sort your items using shelfs!</div>
-        </Shelf>
+        <div>
+          <Shelf >
+            <img className="image" src={add} alt="icon" />
+            <div className="header">Add Shelf</div>
+            <div className="subheader">Sort your items using shelfs!</div>
+          </Shelf>
+        </div>
       </Link>
     </ShelfContainer>
   </Container >

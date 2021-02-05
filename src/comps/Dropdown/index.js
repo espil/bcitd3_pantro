@@ -7,16 +7,7 @@ flex-direction: column;
 margin-bottom: 20px;
 `;
 
-const ImageContainer = styled.img`
-    display: flex; 
-    margin-left: 90%;
-    margin-top: 5%; 
-    user-select: none; 
-    transform:${props => props.expanded ? "rotate(0deg)" : "rotate(-180deg)"};
-    transition: 0.3s;
-`;
-
-const DropdownInputContainer = styled.select`
+const DropdownSelect = styled.select`
     height: 39px;
     width: 323px;
     background-color: #F6F6FB; 
@@ -31,11 +22,6 @@ const DropdownInputContainer = styled.select`
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    &:hover {
-        background-color: #C7C7C7; 
-        transition: 0.3s; 
-    }
-
 `;
 
 const DropdownOption = styled.option`
@@ -58,22 +44,13 @@ const TopText = styled.p`
     user-select: none; 
 `;
 
-const ItemOne = styled.div`
-border-radius: 13px; 
-&:hover {
-    background-color: #B0B0B0; 
-    color: white; 
-    transition: 0.25s; 
-}
-`;
-
-const Dropdown = ({ header, option}) => {
+const Dropdown = ({ header, option }) => {
 
     return <Container>
         <TopText>{header}</TopText>
-        <DropdownInputContainer>
+        <DropdownSelect>
             <DropdownOption value="produce">{option}</DropdownOption>
-        </DropdownInputContainer>
+        </DropdownSelect>
     </Container>
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import "../../App.css";
+const items = require("../../fakeDatabase.json");
 
 const Container = styled.div`
     display: flex;
@@ -24,10 +25,10 @@ const ListedName = styled.div`
 `;
 
 const Bullet = styled.div`
-    width:${props=>props.width ? props.width : "22px"};
-    height:${props=>props.height ? props.height : "22px"};
+    width:${props => props.width ? props.width : "22px"};
+    height:${props => props.height ? props.height : "22px"};
     border-radius: 50%;
-    background-color:${props=>props.bulletcolor ? props.bulletcolor : "#d3d3d3"};
+    background-color:${props => props.bulletcolor ? props.bulletcolor : "#d3d3d3"};
 `;
 
 const ItemName = styled.div`
@@ -61,22 +62,24 @@ const TimeText = styled.div`
     padding-right: 20px;
 `;
 
-const ListedItem = ({width, height, bulletcolor, foodname, expiry, onBulletSelect}) => {
+const ListedItem = ({ onBulletSelect }) => {
 
-    return <Container>
-        <ListedName>
-            <NameCont>
-                <Bullet bulletcolor={bulletcolor} onClick={()=>{
-                onBulletSelect()
-            }}/> 
-                <ItemName>{foodname="Cucumber"}</ItemName>
-            </NameCont>
-        </ListedName>
-        <TimeLeft>
-            <TimeText>{expiry="5"} days</TimeText>
-            <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
-        </TimeLeft>
-    </Container >
+    return <div>
+        {items.map(o => <Container>
+            <ListedName>
+                <NameCont>
+                    <Bullet onClick={() => {
+                        onBulletSelect()
+                    }} />
+                    <ItemName>{o.name}</ItemName>
+                </NameCont>
+            </ListedName>
+            <TimeLeft>
+                <TimeText>{o.expiry} days</TimeText>
+                <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
+            </TimeLeft>
+        </Container>)}
+    </div >
 }
 
 ListedItem.defaultProps = {
@@ -85,7 +88,7 @@ ListedItem.defaultProps = {
     bulletcolor: null,
     foodname: null,
     expiry: null,
-    onBulletSelect:()=>{}
+    onBulletSelect: () => { }
 }
 
 export default ListedItem;
