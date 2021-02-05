@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FoodInfo from 'comps/FoodInfo';
 import Bbut from 'comps/bbut';
 import cucumber from "../img/cucumbers.jpg"
+import { Link } from "react-router-dom";
 
 
 const Container = styled.div`

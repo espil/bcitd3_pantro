@@ -20,7 +20,7 @@ const ListedName = styled.div`
     align-items: center;
     height: 40px;
     color: #000000;
-    margin-left: 10px;
+    margin-left: 16px;
 `;
 
 const Bullet = styled.div`

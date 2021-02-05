@@ -5,6 +5,7 @@ import dairy from '../../icons/dairy.svg';
 import seafood from '../../icons/seafood.svg';
 import add from '../../icons/add.svg';
 import shelves from '../../icons/shelves.svg';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 display:flex;
@@ -49,7 +50,7 @@ height: 170px;
 background: #F6F6FB;
 border-radius: 14px;
 margin:26px 0px 26px 26px;
-& > img {
+.image {
     width: 60px;
     height: 60px;
     border-radius:50%;
@@ -108,15 +109,17 @@ const Shelves = ({ shelfDatabase }) => {
     </Header>
     <ShelfContainer>
       {shelfDatabase.map((o, i) => <Shelf>
-        <img src={o.icon} alt="icon" />
+        <img className="image" src={o.icon} alt="icon" />
         <div className="header">{o.name}</div>
         <div className="subheader">{o.description}</div>
       </Shelf>)}
-      <Shelf >
-        <img src={add} alt="icon" />
-        <div className="header">Add Shelf</div>
-        <div className="subheader">Sort your items using shelfs!</div>
-      </Shelf>
+      <Link to="/" style={{ textDecoration: 'none', color: "black" }}>
+        <Shelf >
+          <img className="image" src={add} alt="icon" />
+          <div className="header">Add Shelf</div>
+          <div className="subheader">Sort your items using shelfs!</div>
+        </Shelf>
+      </Link>
     </ShelfContainer>
   </Container >
 }

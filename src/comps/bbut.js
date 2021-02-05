@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from "react-router-dom";
 import arrow from '../icons/arrow.svg';
 
 
@@ -26,17 +26,19 @@ const Button = styled.div`
 `;
 
 
-function b(e) {
-  e.preventDefault();
-  alert('The link was clicked.');
-}
+// function b(e) {
+//   e.preventDefault();
+//   alert('The link was clicked.');
+// }
 
 const Bbut = () => {
 
 
-  return <Button onClick={b}>
-    <img src={arrow}/>
-  </Button>
+  return <Link to="/">
+    <Button>
+      <img src={arrow} />
+    </Button>
+  </Link >
 
 
 }
