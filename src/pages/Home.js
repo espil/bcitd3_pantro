@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChoiceSlider from 'comps/Slider'; 
-import Dropdown from 'comps/Dropdown'; 
+import ChoiceSlider from 'comps/Slider';
+import Dropdown from 'comps/Dropdown';
 import Shelves from "../comps/Shelves"
 import FoodList from "../comps/FoodList"
 import FAB from "../comps/FAB"
+import ListedItem from "../comps/ListedItem"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
-import IconSelect from 'comps/IconSelect'; 
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 width: 375px;
@@ -37,17 +38,35 @@ text-align: left;
 const Home = () => {
 
     return <Container>
-         <Shelves></Shelves>
-         <Header>
-             <div>
-                 <img className="image" src={restaurant} alt="restaurant" />
-                 <div>&nbsp;My Food</div>
-             </div>
-             <img className="image" src={sort} alt="sort" />
-         </Header>
-         <FoodList></FoodList>
-         <FAB></FAB>
-     </Container>
+        <Shelves></Shelves>
+        <Header>
+            <div>
+                <img className="image" src={restaurant} alt="restaurant" />
+                <div>&nbsp;My Food</div>
+            </div>
+            <Link to="/sort">
+                <img className="image" src={sort} alt="sort" />
+            </Link>
+        </Header>
+        <div>
+            <Link to="/Item">
+                <ListedItem />
+            </Link>
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+            <ListedItem />
+        </div>
+        <Link to="/add-item">
+            <FAB></FAB>
+        </Link>
+    </Container>
 }
 
 export default Home;

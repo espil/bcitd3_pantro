@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import ShelfItem from 'comps/ShelfItem';
-import ListedItem from 'comps/ListedItem';
-import FoodList from 'comps/FoodList';
-// import ProduceShelf from 'comps/ProduceShelf';
 import BrBut from "../comps/brbut.js";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     display:flex;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from "react-router-dom";
 import rarrow from '../icons/rarrow.svg';
 
 
@@ -24,18 +24,18 @@ const Button = styled.div`
 `;
 
 
-function br(e) {
-  e.preventDefault();
-  alert('The link was clicked.');
-}
+// function br(e) {
+//   e.preventDefault();
+//   alert('The link was clicked.');
+// }
 
 const BrBut = () => {
 
-  return <Button onClick={br}>
-    <img src={rarrow} />
-  </Button>
-
-
+  return <Link to="/">
+    <Button >
+      <img src={rarrow} />
+    </Button>
+  </Link>
 }
 
 
