@@ -23,7 +23,10 @@ const Button = styled.div`
   & > img {
     width: 18px;
     height: 18px;
-  }
+  }    &:hover {
+    transform: scale(1.05); 
+    transition: 0.2s; 
+} 
 `;
 
 function additem(a) {
