@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BrBut from 'comps/BackButtonC';
 import AddButton from 'comps/AddButton';
@@ -6,7 +6,11 @@ import Input from 'comps/Input';
 import { Link } from "react-router-dom";
 import restaurant from '../icons/restaurant.svg';
 
+import DatePicker from 'react-date-picker';
+
 const items = require("../fakeDatabase.json");
+const getItems = () => fetch(items).then(res => res.json());
+
 
 const Container = styled.div`
 display:flex;
@@ -46,7 +50,6 @@ const DropdownSelect = styled.select`
     border:none;
     padding-right: 16px;
     -webkit-box-sizing: border-box; 
-
 `;
 
 const DropdownOption = styled.option`
@@ -70,14 +73,30 @@ const TopText = styled.p`
 `;
 
 const AddItem = () => {
-  return <Container>
-    <Link to="/Home"><BrBut></BrBut></Link>
+
+  const [items, setItems] = useState();
+
+  useEffect(() => {
+    getItems().then(data => setItems(data));
+  }, []);
+
+  const [itemname] = useState([]);
+  const [amount] = useState([]);
+  const [shelf] = useState([]);
+  const [storage] = useState([]);
+  const [expiry, onChange] = useState(new Date());
+
+  return <div>
+    
+    <Container>
+
+    <BrBut></BrBut>
     <div className="header">Add an Item</div>
     <Input header="Item Name" />
-    <Input type="date" header="Expiry Date (dd/mm/yyyy)" />
+    <DatePicker type="date" header="Expiry Date (dd/mm/yyyy)" value={expiry} />
     <Input header="Amount" />
     <TopText>Shelf</TopText>
-    <DropdownSelect>
+    <DropdownSelect value={shelf}>
       <DropdownOption>None</DropdownOption>
       {items.map(o => <DropdownOption>{o.shelf}</DropdownOption>)}
     </DropdownSelect>
@@ -91,7 +110,9 @@ const AddItem = () => {
     <Link to="/">
       <AddButton image={restaurant}></AddButton>
     </Link>
-  </Container>
-}
+  </Container>)
+
+  </div>
+  }
 
 export default AddItem;
