@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FoodInfo from 'comps/FoodInfo';
 import Bbut from 'comps/BackButton';
 import cucumber from "../img/cucumbers.jpg"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const Container = styled.div`
     display:flex;
@@ -24,7 +25,8 @@ const Container = styled.div`
     }
 `;
 
-const Item = () => {
+const Item = ({ match, location }) => {
+    // const { params: { itemId } } = match;
 
     return <Container>
         <div className="image">

@@ -33,6 +33,8 @@ text-align: left;
 }
 `;
 
+
+
 const Home = () => {
 
     return <Container>
@@ -46,7 +48,9 @@ const Home = () => {
                 <img className="image" src={sort} alt="sort" />
             </Link>
         </Header>
-        <ListedItem />
+        <Link to="/item/" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+            <ListedItem />
+        </Link>
         <Link to="/add-item">
             <FAB></FAB>
         </Link>
