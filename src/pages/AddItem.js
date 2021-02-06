@@ -6,9 +6,8 @@ import Input from 'comps/Input';
 import Dropdown from 'comps/Dropdown';
 import { Link } from "react-router-dom";
 import DatePicker from 'react-date-picker';
+
 const items = require("../fakeDatabase.json");
-
-
 
 const Container = styled.div`
 display:flex;
@@ -29,22 +28,31 @@ padding:26px;
 `;
 
 const AddItem = () => {
-  const [value, onChange] = useState(new Date());
-  return <Container>
+
+  const [expiry, onChange] = useState(new Date());
+
+  return <div>
+    
+    {items.map(o => <Container>
+
     <Link to="/Home"><BrBut></BrBut></Link>
+
     <div className="header">Add an Item</div>
-    <Input header="Item Name" />
-    <div className="sub">Expiry Date (dd/mm/yyyy)</div>
-    <DatePicker        
-    onChange={onChange}
-    value={value}/>
-    <Input header="Amount" />
-    <Dropdown header="Shelf" />
-    <Dropdown header="Storage" />
+    <Input header="Item Name" value={itemname}/>
+    <div className="header"> Expiry Date (dd/mm/yyyy) </div>
+    <DatePicker
+        onChange={onChange}
+        value={expiry}
+      />
+    <Input header="Amount" value={amount}/>
+    <Dropdown header="Shelf" value={shelf}/>
+    <Dropdown header="Storage" value={Storage}/>
     <Link to="/">
       <AddButton></AddButton>
     </Link>
-  </Container>
-}
+  </Container>)}
+
+  </div>
+  }
 
 export default AddItem;
