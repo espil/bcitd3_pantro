@@ -1,4 +1,3 @@
-  
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BrBut from 'comps/BackButtonC';
@@ -11,6 +10,7 @@ import DatePicker from 'react-date-picker';
 
 const items = require("../fakeDatabase.json");
 const getItems = () => fetch(items).then(res => res.json());
+
 
 const Container = styled.div`
 display:flex;
@@ -71,6 +71,7 @@ const TopText = styled.p`
     margin-left: 0.5vw;
     user-select: none; 
 `;
+
 const AddItem = () => {
 
   const [items, setItems] = useState();
@@ -91,21 +92,18 @@ const AddItem = () => {
 
     <BrBut></BrBut>
     <div className="header">Add an Item</div>
-    <Input header="Item Name" value={itemname} />
+    <Input header="Item Name" />
     <DatePicker type="date" header="Expiry Date (dd/mm/yyyy)" value={expiry} />
-    <Input header="Amount" value={amount}/>
+    <Input header="Amount" />
     <TopText>Shelf</TopText>
     <DropdownSelect value={shelf}>
       <DropdownOption>None</DropdownOption>
-      <DropdownOption>Carbs</DropdownOption>
-      <DropdownOption>Canned Goods</DropdownOption>
-      <DropdownOption>Junk Food</DropdownOption>
-      <DropdownOption>Seafood</DropdownOption>
+      {items.map(o => <DropdownOption>{o.shelf}</DropdownOption>)}
     </DropdownSelect>
     <TopText>Storage</TopText>
-    <DropdownSelect value={storage}>
+    <DropdownSelect>
       <DropdownOption>None</DropdownOption>
-      <DropdownOption>Carbs</DropdownOption>
+      <DropdownOption>Fridge</DropdownOption>
       <DropdownOption>Freezer</DropdownOption>
       <DropdownOption>Pantry</DropdownOption>
     </DropdownSelect>
