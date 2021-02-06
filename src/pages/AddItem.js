@@ -5,11 +5,11 @@ import AddButton from 'comps/AddButton';
 import Input from 'comps/Input';
 import { Link } from "react-router-dom";
 import restaurant from '../icons/restaurant.svg';
-
 import DatePicker from 'react-date-picker';
 
 const items = require("../fakeDatabase.json");
-const getItems = () => fetch(items).then(res => res.json());
+
+// const getItems = () => fetch(items).then(res => res.json());
 
 
 const Container = styled.div`
@@ -74,10 +74,10 @@ const TopText = styled.p`
 
 const AddItem = () => {
 
-  const [items, setItems] = useState();
+  // const [items, setItems] = useState();
 
   useEffect(() => {
-    getItems().then(data => setItems(data));
+    // getItems().then(data => setItems(data));
   }, []);
 
   const [itemname] = useState([]);
@@ -93,8 +93,9 @@ const AddItem = () => {
     <BrBut></BrBut>
     <div className="header">Add an Item</div>
     <Input header="Item Name" />
-    <DatePicker type="date" header="Expiry Date (dd/mm/yyyy)" value={expiry} />
     <Input header="Amount" />
+    <TopText>Expiry Date</TopText>
+    <DatePicker type="date" header="Expiry Date (dd/mm/yyyy)" value={expiry} />
     <TopText>Shelf</TopText>
     <DropdownSelect value={shelf}>
       <DropdownOption>None</DropdownOption>
