@@ -33,7 +33,7 @@ const AddShelf = () => {
         <Input header="Description" />
         <IconSelect />
         <Link to="/">
-            <AddButton text="Add Shelf" src={shelf} />
+            <AddButton text="Add Shelf" image={shelf} />
         </Link>
     </Container>
 }
