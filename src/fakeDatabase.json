@@ -6,6 +6,7 @@
         "amount": 3,
         "storage": "fridge",
         "shelf": "fridge",
+        "imgSrc": "msma",
         "nutrition": [
             {
                 "id": 0,
