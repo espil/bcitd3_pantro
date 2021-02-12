@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Shelves from "../comps/Shelves"
 import FAB from "../comps/FAB"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const content = require("../fakeDatabase.json");
+const itemcontent = require("../itemDB.json");
 
 const Container = styled.div`
 width: 375px;
@@ -114,6 +115,21 @@ const ListedItem = ({ id, name, expiry, onBulletSelect }) => {
 
 const Home = () => {
 
+    const [items, setItems] = useState([]);
+
+    const GetItems = async () => {
+
+        var resp = await axios.get("https://pantro-db.herokuapp.com/api/items");
+        console.log("get message", resp);
+
+        setItems(resp.data)
+        console.log("iotems", resp.data.Item)
+    }
+    
+    useEffect(() => {
+        GetItems();
+    }, []);
+
     return <Container>
         <Shelves></Shelves>
         <Header>
@@ -125,7 +141,7 @@ const Home = () => {
                 <img className="image" src={sort} alt="sort" />
             </Link>
         </Header>
-        {content.map((item) => (
+        {itemcontent.map((item) => (
             <ListedItem key={item.id} {...item} />
         ))}
         <Link to="/add-item">

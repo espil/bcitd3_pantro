@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import restaurant from '../icons/restaurant.svg';
 import DatePicker from 'react-date-picker';
 
-const content = require("../fakeDatabase.json");
+const itemcontent = require("../itemDB.json");
 
 const Container = styled.div`
 display:flex;
@@ -96,7 +96,7 @@ const AddItem = () => {
     <TopText>Shelf</TopText>
     <DropdownSelect value={shelf}>
       <DropdownOption>None</DropdownOption>
-      {content.map(o => <DropdownOption>{o.shelf}</DropdownOption>)}
+      {itemcontent.map(o => <DropdownOption>{o.shelf}</DropdownOption>)}
     </DropdownSelect>
     <TopText>Storage</TopText>
     <DropdownSelect>

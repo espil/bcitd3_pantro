@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Bbut from 'comps/BackButton';
 import cucumber from "../img/cucumbers.jpg"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-const content = require("../fakeDatabase.json");
+const itemcontent = require("../itemDB.json");
 
 const Container = styled.div`
     display:flex;
@@ -169,7 +169,7 @@ padding-bottom:13px;
 
 const Item = ({ match }) => {
     const id = Number(match.params.id);
-    const { name, expiry, amount, shelf, storage, nutrient, grams } = content[id];
+    const { name, expiry, amount, shelf, storage, nutrient, grams } = itemcontent[id];
 
     return <Container>
         <div className="image">
