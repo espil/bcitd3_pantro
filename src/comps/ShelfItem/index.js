@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import cucumber from '../../img/veg/cucumber.png';
-const itemcontent = require("../../itemDB.json");
+// const itemcontent = require("../../itemDB.json");
 
 const Container = styled.div`
 display: grid;

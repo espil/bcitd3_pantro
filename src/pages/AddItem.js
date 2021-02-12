@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import restaurant from '../icons/restaurant.svg';
 import DatePicker from 'react-date-picker';
 
-const itemcontent = require("../itemDB.json");
+// const itemcontent = require("../itemDB.json");
 
 const Container = styled.div`
 display:flex;
