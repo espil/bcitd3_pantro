@@ -177,7 +177,7 @@ const Item = () => {
 
         console.log("items", resp.data.Item);
 
-        setItems({ ...resp.data.Item[0] });
+        setItems({ ...resp.data.Item[params.id-1] });
     }
 
     useEffect(() => {
