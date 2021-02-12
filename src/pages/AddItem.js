@@ -81,35 +81,55 @@ const AddItem = () => {
   const [amount] = useState([]);
   const [shelf] = useState([]);
   const [storage] = useState([]);
-  const [expiry, onChange] = useState(new Date());
+  const [expiry, setExpiry] = useState(new Date());
 
+   function createList() {
+      fetch("http://localhost:3000/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(this.state.singledata)
+      }).then(
+        this.setState({
+          singledata: {
+            name: {},
+            expiry: {},
+            amount: {},
+            storage: {},
+            shelf: {}
+          }
+        })
+      );
+    }
   return <div>
-    
+    <form>
     <Container>
 
     <BrBut></BrBut>
     <div className="header">Add an Item</div>
-    <Input header="Item Name" />
-    <Input header="Amount" />
+    <Input header="Item Name" value={itemname}/>
+    <Input header="Amount" value={amount}/>
     <TopText>Expiry Date</TopText>
-    <DatePicker type="date" header="Expiry Date (dd/mm/yyyy)" value={expiry} />
+    <DatePicker
+        onChange={setExpiry}
+        value={expiry}
+      />
     <TopText>Shelf</TopText>
     <DropdownSelect value={shelf}>
-      <DropdownOption>None</DropdownOption>
-      {content.map(o => <DropdownOption>{o.shelf}</DropdownOption>)}
+      {content.map(o => <DropdownOption value={shelf}>{o.shelf}</DropdownOption>)}
     </DropdownSelect>
     <TopText>Storage</TopText>
-    <DropdownSelect>
-      <DropdownOption>None</DropdownOption>
+    <DropdownSelect value={storage}>
       <DropdownOption>Fridge</DropdownOption>
       <DropdownOption>Freezer</DropdownOption>
       <DropdownOption>Pantry</DropdownOption>
     </DropdownSelect>
     <Link to="/">
-      <AddButton image={restaurant}></AddButton>
+      <AddButton image={restaurant} onClick={createList}></AddButton>
     </Link>
   </Container>
-
+  </form>
   </div>
   }
 
