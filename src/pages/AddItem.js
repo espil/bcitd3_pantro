@@ -4,6 +4,7 @@ import BrBut from 'comps/BackButtonC';
 import AddButton from 'comps/AddButton';
 import Input from 'comps/Input';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import restaurant from '../icons/restaurant.svg';
 import DatePicker from 'react-date-picker';
 
@@ -69,64 +70,65 @@ const TopText = styled.p`
     user-select: none; 
 `;
 
+
 const AddItem = () => {
 
-  // const [items, setItems] = useState();
+  const HandleFormComplete = (name, amount, shelf, storage, expiry) => {
+    console.log(name, amount, shelf, storage, expiry);
 
-  useEffect(() => {
-    // getItems().then(data => setItems(data));
-  }, []);
+    var resp = axios.post("https://pantro-db.herokuapp.com/api/Items", {name:name, amount:amount, shelf:shelf, storage:storage, expiry:expiry});
+    console.log("create", resp);
+  }
+  
+  const [items, setItems] = useState(null);
 
-  const [itemname] = useState([]);
-  const [amount] = useState([]);
-  const [shelf] = useState([]);
-  const [storage] = useState([]);
+  const name= useState(null);
+  const amount = useState(null);
+  const [shelf, setShelf] = useState(null);
+  const [storage, setStorage] = useState(null);
   const [expiry, setExpiry] = useState(new Date());
 
-   function createList() {
-      fetch("http://localhost:3000/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(this.state.singledata)
-      }).then(
-        this.setState({
-          singledata: {
-            name: {},
-            expiry: {},
-            amount: {},
-            storage: {},
-            shelf: {}
-          }
-        })
-      );
-    }
+  const GetItems = async () => {
+    var resp = await axios.get("https://pantro-db.herokuapp.com/api/Items");
+    console.log(resp);
+
+    //update
+    setItems(resp.data);
+  }
+
+  useEffect(() => {
+
+    GetItems();
+  }, []);
+
+
   return <div>
-    <form>
+    <form onSubmit={HandleFormComplete}>
     <Container>
 
     <BrBut></BrBut>
     <div className="header">Add an Item</div>
-    <Input header="Item Name" value={itemname}/>
-    <Input header="Amount" value={amount}/>
+    <Input type="text" header="Item Name" value={name}/>
+    <Input type="text" header="Amount" value={amount}/>
     <TopText>Expiry Date</TopText>
     <DatePicker
         onChange={setExpiry}
         value={expiry}
       />
     <TopText>Shelf</TopText>
-    <DropdownSelect value={shelf}>
+    <DropdownSelect onChange={setShelf}>
       {content.map(o => <DropdownOption value={shelf}>{o.shelf}</DropdownOption>)}
     </DropdownSelect>
     <TopText>Storage</TopText>
-    <DropdownSelect value={storage}>
-      <DropdownOption>Fridge</DropdownOption>
-      <DropdownOption>Freezer</DropdownOption>
-      <DropdownOption>Pantry</DropdownOption>
+    <DropdownSelect onChange={setStorage}>
+      <DropdownOption value="Fridge">Fridge</DropdownOption>
+      <DropdownOption value="Freezer">Freezer</DropdownOption>
+      <DropdownOption value="Pantry">Pantry</DropdownOption>
     </DropdownSelect>
     <Link to="/">
-      <AddButton image={restaurant} onClick={createList}></AddButton>
+      <AddButton image={restaurant} value="Submit" onClick={()=>{
+        HandleFormComplete()
+      }}></AddButton>
     </Link>
   </Container>
   </form>
