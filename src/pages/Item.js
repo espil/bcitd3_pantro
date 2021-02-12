@@ -1,9 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import Bbut from 'comps/BackButton';
 import cucumber from "../img/cucumbers.jpg"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-const content = require("../fakeDatabase.json");
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Container = styled.div`
     display:flex;
@@ -167,9 +167,22 @@ padding-bottom:13px;
 }
 `
 
-const Item = ({ match }) => {
-    const id = Number(match.params.id);
-    const { name, expiry, amount, shelf, storage, nutrient, grams } = content[id];
+const Item = () => {
+    const [items, setItems] = useState([]);
+    const params = useParams();
+    console.log("params", params)
+
+    const GetItems = async () => {
+        var resp = await axios.get("https://pantro-db.herokuapp.com/api/items/");
+
+        console.log("items", resp.data.Item);
+
+        setItems({ ...resp.data.Item[0] });
+    }
+
+    useEffect(() => {
+        GetItems();
+    }, []);
 
     return <Container>
         <div className="image">
@@ -179,9 +192,9 @@ const Item = ({ match }) => {
         <Bbut></Bbut>
         <FoodInfoCont>
             <Header>
-                <div className="food_name">{name}</div>
+                <div className="food_name">{items.Name}</div>
                 <div className="expiry_date">
-                    <div className="expiry">expires in {expiry} days</div>
+                    <div className="expiry">expires in {items.Expiry} days</div>
                     <div className="dot"></div>
                 </div>
             </Header>
@@ -202,15 +215,15 @@ const Item = ({ match }) => {
             <StorageInfo>
                 <div className="info_cont">
                     <div className="info_header">Amount</div>
-                    <div className="info_text">{amount} items are currently stored</div>
+                    <div className="info_text">{items.Amount} items are currently stored</div>
                 </div>
                 <div className="info_cont">
                     <div className="info_header">Item Storage</div>
-                    <div className="info_text">Find it in the {storage}</div>
+                    <div className="info_text">Find it in the {items.StorageID}</div>
                 </div>
                 <div className="info_cont">
                     <div className="info_header">Shelf</div>
-                    <div className="info_text">Find it on your {shelf} Shelf</div>
+                    <div className="info_text">Find it on your {items.ShelfID} Shelf</div>
                 </div>
             </StorageInfo>
             <Nutrition>
@@ -219,8 +232,8 @@ const Item = ({ match }) => {
             </div>
                 <div>
                     <div className="dark_grey">
-                        <div>{nutrient}?</div>
-                        <div>{grams}? g</div>
+                        <div>?</div>
+                        <div>? g</div>
                     </div>
                 </div>
             </Nutrition>

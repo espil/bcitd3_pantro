@@ -8,7 +8,7 @@ import axios from 'axios';
 import restaurant from '../icons/restaurant.svg';
 import DatePicker from 'react-date-picker';
 
-const content = require("../fakeDatabase.json");
+// const itemcontent = require("../itemDB.json");
 
 const Container = styled.div`
 display:flex;

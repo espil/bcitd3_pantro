@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Shelves from "../comps/Shelves"
 import FAB from "../comps/FAB"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 import { Link } from "react-router-dom";
-
-const content = require("../fakeDatabase.json");
+import axios from "axios";
 
 const Container = styled.div`
 width: 375px;
@@ -88,31 +87,42 @@ const ListCont = styled.div`
     min-height: 60px;
     max-height: 60px;
     background-color: #ffffff;
+    border-top: .1px solid rgba(0, 0, 0, .1);
 `;
 
-const ListedItem = ({ id, name, expiry, onBulletSelect }) => {
+const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 
     return <div>
-        <Link to={`/item/${id}`} style={{ textDecoration: 'none', fontFamily: "Pier Sans", color: "black" }}>
-            <ListCont>
-                <ListedName>
-                    <NameCont>
-                        <Bullet onClick={() => {
-                            onBulletSelect()
-                        }} />
-                        <ItemName>{name}</ItemName>
-                    </NameCont>
-                </ListedName>
-                <TimeLeft>
-                    <TimeText>{expiry} days</TimeText>
-                    <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
-                </TimeLeft>
-            </ListCont>
-        </Link>
+        <ListCont>
+            <ListedName>
+                <NameCont>
+                    <Bullet onClick={() => {
+                        onBulletSelect()
+                    }} />
+                    <ItemName>{name}</ItemName>
+                </NameCont>
+            </ListedName>
+            <TimeLeft>
+                <TimeText>{expiry} days</TimeText>
+                <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
+            </TimeLeft>
+        </ListCont>
     </div >
 }
 
 const Home = () => {
+
+    const [items, setItems] = useState([]);
+    const GetItems = async () => {
+        var resp = await axios.get("https://pantro-db.herokuapp.com/api/items");
+        console.log("items", resp.data.Item);
+
+        setItems([...resp.data.Item])
+    }
+
+    useEffect(() => {
+        GetItems();
+    }, []);
 
     return <Container>
         <Shelves></Shelves>
@@ -125,13 +135,15 @@ const Home = () => {
                 <img className="image" src={sort} alt="sort" />
             </Link>
         </Header>
-        {content.map((item) => (
-            <ListedItem key={item.id} {...item} />
-        ))}
+
+        {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
+            <ListedItem key={i} expiry={o.Expiry} name={o.Name} />
+        </Link>)}
+
         <Link to="/add-item">
             <FAB></FAB>
         </Link>
-    </Container>
+    </Container >
 }
 
 export default Home;

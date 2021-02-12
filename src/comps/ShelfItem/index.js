@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import cucumber from '../../img/veg/cucumber.png';
-const items = require("../../fakeDatabase.json");
+// const itemcontent = require("../../itemDB.json");
 
 const Container = styled.div`
 display: grid;
@@ -43,7 +43,7 @@ const ShelfItem = () => {
 
     return <Container>
 
-        {items.map(o => <div className="center"><ShelfCont>
+        {itemcontent.map(o => <div className="center"><ShelfCont>
             <SquareIcon >
                 <img src={cucumber} width='55px' height='55px' />
             </SquareIcon>
