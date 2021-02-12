@@ -82,15 +82,15 @@ const AddItem = () => {
   
   const [items, setItems] = useState(null);
 
-  const name= useState(null);
-  const amount = useState(null);
-  const [shelf, setShelf] = useState(null);
-  const [storage, setStorage] = useState(null);
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("null");
+  const [shelf, setShelf] = useState("");
+  const [storage, setStorage] = useState("");
   const [expiry, setExpiry] = useState(new Date());
 
   const GetItems = async () => {
     var resp = await axios.get("https://pantro-db.herokuapp.com/api/Items");
-    console.log(resp);
+    // console.log(resp);
 
     //update
     setItems(resp.data);
@@ -103,32 +103,36 @@ const AddItem = () => {
 
 
   return <div>
-    <form onSubmit={HandleFormComplete}>
+    <form>
     <Container>
 
     <BrBut></BrBut>
     <div className="header">Add an Item</div>
-    <Input type="text" header="Item Name" value={name}/>
-    <Input type="text" header="Amount" value={amount}/>
+    <Input type="text" header="Item Name" onChange={(e)=>{
+      setName(e.target.value);
+    }}/>
+    <Input type="text" header="Amount" onChange={(e)=>{
+      setAmount(e.target.value);
+    }}/>
     <TopText>Expiry Date</TopText>
     <DatePicker
         onChange={setExpiry}
         value={expiry}
       />
     <TopText>Shelf</TopText>
-    <DropdownSelect onChange={setShelf}>
+    <DropdownSelect onChange={(e)=>{
+      setShelf(e.target.value);}}>
       {content.map(o => <DropdownOption value={shelf}>{o.shelf}</DropdownOption>)}
     </DropdownSelect>
     <TopText>Storage</TopText>
-    <DropdownSelect onChange={setStorage}>
+    <DropdownSelect onChange={(e)=>{
+      setStorage(e.target.value);}}>
       <DropdownOption value="Fridge">Fridge</DropdownOption>
       <DropdownOption value="Freezer">Freezer</DropdownOption>
       <DropdownOption value="Pantry">Pantry</DropdownOption>
     </DropdownSelect>
     <Link to="/">
-      <AddButton image={restaurant} value="Submit" onClick={()=>{
-        HandleFormComplete()
-      }}></AddButton>
+      <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete}></AddButton>
     </Link>
   </Container>
   </form>
