@@ -4,6 +4,7 @@ import BrBut from 'comps/BackButtonC';
 import AddButton from 'comps/AddButton';
 import Input from 'comps/Input';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import restaurant from '../icons/restaurant.svg';
 import DatePicker from 'react-date-picker';
 
@@ -69,47 +70,72 @@ const TopText = styled.p`
     user-select: none; 
 `;
 
-const AddItem = () => {
 
-  // const [items, setItems] = useState();
+const AddItem = () => {
+  
+  const HandleFormComplete = (name, amount, shelf, storage, expiry) => {
+    console.log(name, amount, shelf, storage, expiry);
+
+    var resp = axios.post("https://pantro-db.herokuapp.com/api/Items", {name:name, amount:amount, shelf:shelf, storage:storage, expiry:expiry});
+    // console.log("create", resp);
+  }
+  
+  const [items, setItems] = useState(null);
+
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("null");
+  const [shelf, setShelf] = useState("");
+  const [storage, setStorage] = useState("");
+  const [expiry, setExpiry] = useState(new Date());
+
+  const GetItems = async () => {
+    var resp = await axios.get("https://pantro-db.herokuapp.com/api/Items");
+    // console.log(resp);
+
+    //update
+    setItems(resp.data);
+  }
 
   useEffect(() => {
-    // getItems().then(data => setItems(data));
+
+    GetItems();
   }, []);
 
-  const [itemname] = useState([]);
-  const [amount] = useState([]);
-  const [shelf] = useState([]);
-  const [storage] = useState([]);
-  const [expiry, onChange] = useState(new Date());
 
   return <div>
-    
+    <form>
     <Container>
 
     <BrBut></BrBut>
     <div className="header">Add an Item</div>
-    <Input header="Item Name" />
-    <Input header="Amount" />
+    <Input type="text" header="Item Name" onChange={(e)=>{
+      setName(e.target.value);
+    }}/>
+    <Input type="text" header="Amount" onChange={(e)=>{
+      setAmount(e.target.value);
+    }}/>
     <TopText>Expiry Date</TopText>
-    <DatePicker type="date" header="Expiry Date (dd/mm/yyyy)" value={expiry} />
+    <DatePicker
+        onChange={setExpiry}
+        value={expiry}
+      />
     <TopText>Shelf</TopText>
-    <DropdownSelect value={shelf}>
-      <DropdownOption>None</DropdownOption>
-      {itemcontent.map(o => <DropdownOption>{o.shelf}</DropdownOption>)}
+    <DropdownSelect onChange={(e)=>{
+      setShelf(e.target.value);}}>
+      {content.map(o => <DropdownOption value={shelf}>{o.shelf}</DropdownOption>)}
     </DropdownSelect>
     <TopText>Storage</TopText>
-    <DropdownSelect>
-      <DropdownOption>None</DropdownOption>
-      <DropdownOption>Fridge</DropdownOption>
-      <DropdownOption>Freezer</DropdownOption>
-      <DropdownOption>Pantry</DropdownOption>
+    <DropdownSelect onChange={(e)=>{
+      setStorage(e.target.value);}}>
+      <DropdownOption value="Fridge">Fridge</DropdownOption>
+      <DropdownOption value="Freezer">Freezer</DropdownOption>
+      <DropdownOption value="Pantry">Pantry</DropdownOption>
     </DropdownSelect>
     <Link to="/">
-      <AddButton image={restaurant}></AddButton>
+      <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete}></AddButton>
     </Link>
   </Container>
-
+  </form>
   </div>
   }
 
