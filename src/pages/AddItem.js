@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BrBut from 'comps/BackButtonC';
 import AddButton from 'comps/AddButton';
 import Input from 'comps/Input';
-import Dropdown from 'comps/Dropdown';
 import { Link } from "react-router-dom";
+import restaurant from '../icons/restaurant.svg';
+import DatePicker from 'react-date-picker';
+
+const content = require("../fakeDatabase.json");
 
 const Container = styled.div`
 display:flex;
@@ -24,6 +27,28 @@ padding:26px;
 }
 `;
 
+const DropdownSelect = styled.select`
+    width: 327px;
+    height: 42px;
+    background-color:#F6F6FB;  
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius:13px;
+    border:none;
+    padding:10px;
+    font-family: Pier Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    border:none;
+    padding-right: 16px;
+    -webkit-box-sizing: border-box; 
+`;
+
 const DropdownOption = styled.option`
     min-height: 133px; 
     max-width: 323px; 
@@ -37,19 +62,55 @@ const DropdownOption = styled.option`
     }
 `;
 
+const TopText = styled.p`
+    color: black; 
+    font-weight: bold; 
+    margin-left: 0.5vw;
+    user-select: none; 
+`;
+
 const AddItem = () => {
-  return <Container>
-    <Link to="/Home"><BrBut></BrBut></Link>
+
+  // const [items, setItems] = useState();
+
+  useEffect(() => {
+    // getItems().then(data => setItems(data));
+  }, []);
+
+  const [itemname] = useState([]);
+  const [amount] = useState([]);
+  const [shelf] = useState([]);
+  const [storage] = useState([]);
+  const [expiry, onChange] = useState(new Date());
+
+  return <div>
+    
+    <Container>
+
+    <BrBut></BrBut>
     <div className="header">Add an Item</div>
     <Input header="Item Name" />
-    <Input type="date" header="Expiry Date (dd/mm/yyyy)" />
     <Input header="Amount" />
-    <Dropdown header="Shelf" />
-    <Dropdown header="Storage" />
+    <TopText>Expiry Date</TopText>
+    <DatePicker type="date" header="Expiry Date (dd/mm/yyyy)" value={expiry} />
+    <TopText>Shelf</TopText>
+    <DropdownSelect value={shelf}>
+      <DropdownOption>None</DropdownOption>
+      {content.map(o => <DropdownOption>{o.shelf}</DropdownOption>)}
+    </DropdownSelect>
+    <TopText>Storage</TopText>
+    <DropdownSelect>
+      <DropdownOption>None</DropdownOption>
+      <DropdownOption>Fridge</DropdownOption>
+      <DropdownOption>Freezer</DropdownOption>
+      <DropdownOption>Pantry</DropdownOption>
+    </DropdownSelect>
     <Link to="/">
-      <AddButton></AddButton>
+      <AddButton image={restaurant}></AddButton>
     </Link>
   </Container>
-}
+
+  </div>
+  }
 
 export default AddItem;

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import restaurant from '../../icons/restaurant.svg';
 
 const Button = styled.div`
   width: 323px;
@@ -35,10 +34,10 @@ function additem(a) {
   alert('The link was clicked')
 }
 
-const AddButton = ({text}) => {
+const AddButton = ({text, image}) => {
 
   return <Button>
-    <img src={restaurant} />
+    <img src={image} />
     &nbsp;{text}
      </Button>
 }

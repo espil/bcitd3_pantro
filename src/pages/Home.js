@@ -2,14 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Shelves from "../comps/Shelves"
 import FAB from "../comps/FAB"
-import ListedItem from "../comps/ListedItem"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 import { Link } from "react-router-dom";
 
+const content = require("../fakeDatabase.json");
+
 const Container = styled.div`
 width: 375px;
 overflow-x: hidden;
+font-family: Pier Sans;
 `;
 
 const Header = styled.div`
@@ -19,7 +21,6 @@ margin:0px 26px 26px 26px;
 & > div {
 display:flex;
 flex-direction:row;
-font-family: Pier Sans;
 font-size: 18px;
 font-style: normal;
 font-weight: 700;
@@ -32,6 +33,84 @@ text-align: left;
   height: 20px;
 }
 `;
+
+const ListedName = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    color: #000000;
+    margin-left: 16px;
+`;
+
+const Bullet = styled.div`
+    width:${props => props.width ? props.width : "22px"};
+    height:${props => props.height ? props.height : "22px"};
+    border-radius: 50%;
+    background-color:${props => props.bulletcolor ? props.bulletcolor : "#d3d3d3"};
+`;
+
+const ItemName = styled.div`
+    color: #000000;
+    font-size: 18px;
+    margin-left: 20px;
+`;
+
+const NameCont = styled.div`
+    display: flex;
+    align-items: center;
+    max-height: 30px;
+    flex-direction: row;
+    padding:10px;
+`;
+
+const TimeLeft = styled.div`
+    display: flex;
+    align-items: center;
+    color: #000000;
+    font-size: 18px; 
+    margin-right: 26px;
+`;
+
+const TimeText = styled.div`
+    color: #999999;
+    font-size: 14px;
+    padding-right: 20px;
+`;
+
+const ListCont = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 375px;
+    max-width: 375px;
+    min-height: 60px;
+    max-height: 60px;
+    background-color: #ffffff;
+`;
+
+const ListedItem = ({ id, name, expiry, onBulletSelect }) => {
+
+    return <div>
+        <Link to={`/item/${id}`} style={{ textDecoration: 'none', fontFamily: "Pier Sans", color: "black" }}>
+            <ListCont>
+                <ListedName>
+                    <NameCont>
+                        <Bullet onClick={() => {
+                            onBulletSelect()
+                        }} />
+                        <ItemName>{name}</ItemName>
+                    </NameCont>
+                </ListedName>
+                <TimeLeft>
+                    <TimeText>{expiry} days</TimeText>
+                    <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
+                </TimeLeft>
+            </ListCont>
+        </Link>
+    </div >
+}
 
 const Home = () => {
 
@@ -46,7 +125,9 @@ const Home = () => {
                 <img className="image" src={sort} alt="sort" />
             </Link>
         </Header>
-        <ListedItem />
+        {content.map((item) => (
+            <ListedItem key={item.id} {...item} />
+        ))}
         <Link to="/add-item">
             <FAB></FAB>
         </Link>
