@@ -72,14 +72,14 @@ const TopText = styled.p`
 
 
 const AddItem = () => {
-  
+
   const HandleFormComplete = (name, amount, shelf, storage, expiry) => {
     console.log(name, amount, shelf, storage, expiry);
 
-    var resp = axios.post("https://pantro-db.herokuapp.com/api/Items", {name:name, amount:amount, shelf:shelf, storage:storage, expiry:expiry});
+    var resp = axios.post("https://pantro-db.herokuapp.com/api/items", { name: name, amount: amount, shelf: shelf, storage: storage, expiry: expiry });
     // console.log("create", resp);
   }
-  
+
   const [items, setItems] = useState(null);
 
   const [name, setName] = useState("");
@@ -104,39 +104,41 @@ const AddItem = () => {
 
   return <div>
     <form>
-    <Container>
+      <Container>
 
-    <BrBut></BrBut>
-    <div className="header">Add an Item</div>
-    <Input type="text" header="Item Name" onChange={(e)=>{
-      setName(e.target.value);
-    }}/>
-    <Input type="text" header="Amount" onChange={(e)=>{
-      setAmount(e.target.value);
-    }}/>
-    <TopText>Expiry Date</TopText>
-    <DatePicker
-        onChange={setExpiry}
-        value={expiry}
-      />
-    <TopText>Shelf</TopText>
-    <DropdownSelect onChange={(e)=>{
-      setShelf(e.target.value);}}>
-      {content.map(o => <DropdownOption value={shelf}>{o.shelf}</DropdownOption>)}
-    </DropdownSelect>
-    <TopText>Storage</TopText>
-    <DropdownSelect onChange={(e)=>{
-      setStorage(e.target.value);}}>
-      <DropdownOption value="Fridge">Fridge</DropdownOption>
-      <DropdownOption value="Freezer">Freezer</DropdownOption>
-      <DropdownOption value="Pantry">Pantry</DropdownOption>
-    </DropdownSelect>
-    <Link to="/">
-      <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete}></AddButton>
-    </Link>
-  </Container>
-  </form>
+        <BrBut></BrBut>
+        <div className="header">Add an Item</div>
+        <Input type="text" header="Item Name" onChange={(e) => {
+          setName(e.target.value);
+        }} />
+        <Input type="text" header="Amount" onChange={(e) => {
+          setAmount(e.target.value);
+        }} />
+        <TopText>Expiry Date</TopText>
+        <DatePicker
+          onChange={setExpiry}
+          value={expiry}
+        />
+        <TopText>Shelf</TopText>
+        <DropdownSelect onChange={(e) => {
+          setShelf(e.target.value);
+        }}>
+          <DropdownOption value={shelf}></DropdownOption>
+        </DropdownSelect>
+        <TopText>Storage</TopText>
+        <DropdownSelect onChange={(e) => {
+          setStorage(e.target.value);
+        }}>
+          <DropdownOption value="Fridge">Fridge</DropdownOption>
+          <DropdownOption value="Freezer">Freezer</DropdownOption>
+          <DropdownOption value="Pantry">Pantry</DropdownOption>
+        </DropdownSelect>
+        <Link to="/">
+          <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete}></AddButton>
+        </Link>
+      </Container>
+    </form>
   </div>
-  }
+}
 
 export default AddItem;
