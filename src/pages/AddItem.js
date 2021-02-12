@@ -72,12 +72,12 @@ const TopText = styled.p`
 
 
 const AddItem = () => {
-
+  
   const HandleFormComplete = (name, amount, shelf, storage, expiry) => {
     console.log(name, amount, shelf, storage, expiry);
 
     var resp = axios.post("https://pantro-db.herokuapp.com/api/Items", {name:name, amount:amount, shelf:shelf, storage:storage, expiry:expiry});
-    console.log("create", resp);
+    // console.log("create", resp);
   }
   
   const [items, setItems] = useState(null);
