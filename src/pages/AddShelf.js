@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import IconSelect from 'comps/IconSelect';
 import Input from 'comps/Input';
@@ -6,6 +6,7 @@ import BrBut from "../comps/BackButtonC/index.js";
 import AddButton from '../comps/AddButton/index.js';
 import shelf from '../icons/shelf.png';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const Container = styled.div`
 display:flex;
@@ -26,11 +27,25 @@ padding:26px;
 `;
 
 const AddShelf = () => {
+
+    const HandleFormComplete = (name, description) => {
+        console.log(name, description);
+
+        var resp = axios.post("https://pantro-db.herokuapp.com/api.Items")
+    }
+    const [amount, setAmount] = useState("null");
+
+    
+  const [name, setName] = useState("");
     return <Container>
         <BrBut></BrBut>
         <div className="header">Add a Shelf</div>
-        <Input header="Shelf Name" />
-        <Input header="Description" />
+        <Input type="text" header="Shelf Name" onChange={(e)=>{
+      setName(e.target.value);
+    }}/>
+    <Input type="text" header="Description" onChange={(e)=>{
+      setAmount(e.target.value);
+    }}/>
         <IconSelect />
         <Link to="/">
             <AddButton text="Add Shelf" image={shelf} />
