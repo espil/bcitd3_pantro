@@ -175,9 +175,9 @@ const Item = () => {
     const GetItems = async () => {
         var resp = await axios.get("https://pantro-db.herokuapp.com/api/items/");
 
-        console.log("items", resp.data);
+        console.log("items", resp.data.Item);
 
-        setItems({ ...resp.data[0] });
+        setItems({ ...resp.data.Item[0] });
     }
 
     useEffect(() => {
@@ -194,7 +194,7 @@ const Item = () => {
             <Header>
                 <div className="food_name">{items.Name}</div>
                 <div className="expiry_date">
-                    <div className="expiry">expires in {items.expiry} days</div>
+                    <div className="expiry">expires in {items.Expiry} days</div>
                     <div className="dot"></div>
                 </div>
             </Header>
@@ -215,15 +215,15 @@ const Item = () => {
             <StorageInfo>
                 <div className="info_cont">
                     <div className="info_header">Amount</div>
-                    <div className="info_text">{items.amount} items are currently stored</div>
+                    <div className="info_text">{items.Amount} items are currently stored</div>
                 </div>
                 <div className="info_cont">
                     <div className="info_header">Item Storage</div>
-                    <div className="info_text">Find it in the {items.storage}</div>
+                    <div className="info_text">Find it in the {items.StorageID}</div>
                 </div>
                 <div className="info_cont">
                     <div className="info_header">Shelf</div>
-                    <div className="info_text">Find it on your {items.shelf} Shelf</div>
+                    <div className="info_text">Find it on your {items.ShelfID} Shelf</div>
                 </div>
             </StorageInfo>
             <Nutrition>
