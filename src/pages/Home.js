@@ -234,7 +234,7 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 }
 
 const Home = () => {
-
+    
     const [items, setItems] = useState([]);
     const [shelves, setShelves] = useState([]);
 
@@ -243,14 +243,61 @@ const Home = () => {
         var resptwo = await axios.get("https://pantro-db.herokuapp.com/api/shelves");
         console.log("items", resp.data.Item);
         console.log("shelves", resptwo.data.Shelf);
-
         setItems([...resp.data.Item])
         setShelves([...resptwo.data.Shelf])
+    }
+
+    const FilterPage = (text) => {
+        setItems(
+            allitems.filter((o)=>{
+                return o.Name.includes(text); 
+            })
+        )
     }
 
     useEffect(() => {
         GetContent();
     }, []);
+
+// FILTER ALPHABETICALLY
+    const [sortitems, setSort] = useState(null);
+    
+    const AlphaFilter = (sortitems) => {
+            setSort(
+                sortitems.sort(sortByName)
+        )
+    }
+
+    function sortByName(a,b){
+        if(a.name > b.name){
+            return 1;
+        } else if(a.name < b.name){
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+//FILTER REVERSE ALPHABETICALLY
+    const [reversesortitems, setReverseSort] = useState(null);
+        
+    const reverseAlphaFilter = (reversesortitems) => {
+            setReverseSort(
+            reversesortitems.sort(reverseSortByName)
+        )
+    }
+
+
+    function reverseSortByName(a,b){
+        if(a.name > b.name){
+            return -1;
+        } else if(a.name < b.name){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 
     return <Container>
         <div className="header">
@@ -284,13 +331,17 @@ const Home = () => {
             </Link>
         </Header>
 
-        <Input header="Filter By Name" />
+        <Input onChange={(e) =>{
+            FilterPage(e.target.value); 
+        }} header="Filter By Name" />
             <DropdownSelect>
                 <DropdownOption>None</DropdownOption>
                 <DropdownOption>Oldest</DropdownOption>
                 <DropdownOption>Freshest</DropdownOption>
-                <DropdownOption>Alphabetical (A-Z)</DropdownOption>
-                <DropdownOption>Reverse Alphabetical (Z-A)</DropdownOption>
+                <DropdownOption 
+                    onContainerSelect={AlphaFilter}>Alphabetical (A-Z)</DropdownOption>
+                <DropdownOption
+                    onContainerSelect={reverseAlphaFilter}>Reverse Alphabetical (Z-A)</DropdownOption>
             </DropdownSelect>
 
         {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
@@ -300,6 +351,8 @@ const Home = () => {
         <Link to="/add-item">
             <FAB></FAB>
         </Link>
+
+
     </Container >
 }
 
