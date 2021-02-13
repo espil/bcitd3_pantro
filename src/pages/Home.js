@@ -6,6 +6,7 @@ import sort from '../icons/settings_black.svg';
 import add from '../icons/add.svg';
 import shelf_icon from '../icons/shelves.svg';
 import { Link } from "react-router-dom";
+import Input from "comps/Input"; 
 import axios from "axios";
 
 const Container = styled.div`
@@ -32,6 +33,50 @@ font-family: Pier Sans;
 }
 }
 `;
+
+const DropdownSelect = styled.select`
+    width: 327px;
+    height: 42px;
+    background-color:#F6F6FB;  
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius:13px;
+    border:none;
+    padding:10px;
+    font-family: Pier Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    border:none;
+    padding-right: 16px;
+    -webkit-box-sizing: border-box; 
+    margin: 20px 0px 20px 20px; 
+`;
+
+const DropdownOption = styled.option`
+    min-height: 133px; 
+    max-width: 323px; 
+    background-color: #F6F6FB;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 13px; 
+    &:hover {
+        background-color: #C7C7C7; 
+        transition: 0.3s; 
+    }
+`;
+
+const TopText = styled.p`
+    color: black; 
+    font-weight: bold; 
+    margin-left: 0.5vw;
+    user-select: none; 
+`;
+
 
 const Header = styled.div`
 display :flex;
@@ -170,8 +215,8 @@ const Shelves = ({ description, header, icon }) => {
 
 const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 
-    return <div>
-        <ListCont>
+    return <Container>
+        <ListCont>      
             <ListedName>
                 <NameCont>
                     <Bullet onClick={() => {
@@ -185,7 +230,7 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
                 <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
             </TimeLeft>
         </ListCont>
-    </div >
+        </Container>
 }
 
 const Home = () => {
@@ -208,7 +253,6 @@ const Home = () => {
     }, []);
 
     return <Container>
-
         <div className="header">
             <div >
                 <img className="image" src={shelf_icon} alt="shelf_icon" />
@@ -230,7 +274,6 @@ const Home = () => {
             </Link>
             <Spacer />
         </ShelfContainer>
-
         <Header>
             <div>
                 <img className="image" src={restaurant} alt="restaurant" />
@@ -240,6 +283,15 @@ const Home = () => {
                 <img className="image" src={sort} alt="sort" />
             </Link>
         </Header>
+
+        <Input header="Filter By Name" />
+            <DropdownSelect>
+                <DropdownOption>None</DropdownOption>
+                <DropdownOption>Oldest</DropdownOption>
+                <DropdownOption>Freshest</DropdownOption>
+                <DropdownOption>Alphabetical (A-Z)</DropdownOption>
+                <DropdownOption>Reverse Alphabetical (Z-A)</DropdownOption>
+            </DropdownSelect>
 
         {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
             <ListedItem key={i} expiry={o.Expiry} name={o.Name} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import AddButton from "../comps/AddButton/index.js";
 import Input from "../comps/Input"
@@ -91,3 +91,13 @@ const Sort = () => {
 }
 
 export default Sort;
+
+function sortByExpiry(a, b) {
+    if (a.expiry > b. expiry) {
+        return 1; 
+    } else if (a.expiry > b.expiry) {
+        return -1; 
+    } else {
+        return 0; 
+    }
+}
