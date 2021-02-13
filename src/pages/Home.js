@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Shelves from "../comps/Shelves"
 import FAB from "../comps/FAB"
 import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
+import add from '../icons/add.svg';
+import shelf_icon from '../icons/shelves.svg';
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -11,6 +12,25 @@ const Container = styled.div`
 width: 375px;
 overflow-x: hidden;
 font-family: Pier Sans;
+.header{
+    display :flex;
+    justify-content:space-between;
+    margin:26px 26px 0px 26px;
+& > div {
+    display:flex;
+    flex-direction:row;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.image {
+    width: 20px;
+    height: 20px;
+}
+}
 `;
 
 const Header = styled.div`
@@ -90,6 +110,64 @@ const ListCont = styled.div`
     border-top: .1px solid rgba(0, 0, 0, .1);
 `;
 
+const ShelfContainer = styled.div`
+display: flex;
+flex-wrap: nowrap;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+.spacer{
+    width:50px;
+}
+`
+const Spacer = styled.div`
+    padding:13px;
+`
+
+const Shelf = styled.div`
+flex: 0 0 auto;
+flex-direction:column;
+width: 140px;
+height: 170px;
+background: #F6F6FB;
+border-radius: 14px;
+margin:26px 0px 26px 26px;
+.image {
+    width: 60px;
+    height: 60px;
+    border-radius:50%;
+    margin:22px 0px 0px 16px
+  }
+& > div.header {
+    font-family: Pier Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;    
+    margin:16px 16px 0px 16px;
+  }
+& > div.subheader {
+    font-family: Pier Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;    
+    opacity: 0.5;
+    margin:8px 16px 0px 16px;
+  }
+`;
+
+const Shelves = ({ description, header, icon }) => {
+    return <Shelf>
+        <img className="image" src={icon} alt="" />
+        <div className="header">{header}</div>
+        <div className="subheader">{description}</div>
+    </Shelf>
+}
+
 const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 
     return <div>
@@ -113,19 +191,46 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 const Home = () => {
 
     const [items, setItems] = useState([]);
-    const GetItems = async () => {
+    const [shelves, setShelves] = useState([]);
+
+    const GetContent = async () => {
         var resp = await axios.get("https://pantro-db.herokuapp.com/api/items");
+        var resptwo = await axios.get("https://pantro-db.herokuapp.com/api/shelves");
         console.log("items", resp.data.Item);
+        console.log("shelves", resptwo.data.Shelf);
 
         setItems([...resp.data.Item])
+        setShelves([...resptwo.data.Shelf])
     }
 
     useEffect(() => {
-        GetItems();
+        GetContent();
     }, []);
 
     return <Container>
-        <Shelves></Shelves>
+
+        <div className="header">
+            <div >
+                <img className="image" src={shelf_icon} alt="shelf_icon" />
+                <div>&nbsp;My Shelves</div>
+            </div>
+        </div>
+        <ShelfContainer>
+
+            {shelves.map((o, i) => <Link to={"/shelf/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
+                <Shelves key={i} header={o.Name} description={o.Description} icon={o.IconID} />
+            </Link>)}
+
+            <Link to="/add-shelf" style={{ textDecoration: 'none', color: "black" }}>
+                <Shelf >
+                    <img className="image" src={add} alt="icon" />
+                    <div className="header">Add Shelf</div>
+                    <div className="subheader">Sort your items using shelfs!</div>
+                </Shelf>
+            </Link>
+            <Spacer />
+        </ShelfContainer>
+
         <Header>
             <div>
                 <img className="image" src={restaurant} alt="restaurant" />
