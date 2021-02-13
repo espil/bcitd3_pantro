@@ -6,6 +6,7 @@ import restaurant from '../icons/restaurant_black.svg';
 import sort from '../icons/settings_black.svg';
 import { Link } from "react-router-dom";
 import Input from "comps/Input"; 
+// import Dropdown from "comps/Dropdown"; 
 import axios from "axios";
 
 const Container = styled.div`
@@ -169,8 +170,48 @@ const Home = () => {
         GetItems();
     }, []);
 
+// FILTER ALPHABETICALLY
+    const [sortitems, setSort] = useState(null);
+    
+    const AlphaFilter = (sortitems) => {
+            setSort(
+                sortitems.sort(sortByName)
+        )
+    }
+
+    function sortByName(a,b){
+        if(a.name > b.name){
+            return 1;
+        } else if(a.name < b.name){
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+//FILTER REVERSE ALPHABETICALLY
+    const [reversesortitems, setReverseSort] = useState(null);
+        
+    const reverseAlphaFilter = (reversesortitems) => {
+            setReverseSort(
+            reversesortitems.sort(reverseSortByName)
+        )
+    }
+
+
+    function reverseSortByName(a,b){
+        if(a.name > b.name){
+            return -1;
+        } else if(a.name < b.name){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+
     return <Container>
-          <TopText>Sort By</TopText>
+          {/* <TopText>Sort By</TopText> */}
         <Shelves></Shelves>
         <Header>
             <div>
@@ -187,8 +228,10 @@ const Home = () => {
                 <DropdownOption>None</DropdownOption>
                 <DropdownOption>Oldest</DropdownOption>
                 <DropdownOption>Freshest</DropdownOption>
-                <DropdownOption>Alphabetical (A-Z)</DropdownOption>
-                <DropdownOption>Reverse Alphabetical (Z-A)</DropdownOption>
+                <DropdownOption 
+                    onContainerSelect={AlphaFilter}>Alphabetical (A-Z)</DropdownOption>
+                <DropdownOption
+                    onContainerSelect={reverseAlphaFilter}>Reverse Alphabetical (Z-A)</DropdownOption>
             </DropdownSelect>
 
         {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
@@ -198,6 +241,8 @@ const Home = () => {
         <Link to="/add-item">
             <FAB></FAB>
         </Link>
+
+
     </Container >
 }
 
