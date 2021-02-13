@@ -156,13 +156,22 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 }
 
 const Home = () => {
-
+    
+    const [allitems, setAll] = useState([]); 
     const [items, setItems] = useState([]);
     const GetItems = async () => {
         var resp = await axios.get("https://pantro-db.herokuapp.com/api/items");
         console.log("items", resp.data.Item);
+        setAll(resp.data); 
+        setItems([...resp.data.Item]);
+    }
 
-        setItems([...resp.data.Item])
+    const FilterPage = (text) => {
+        setItems(
+            allitems.filter((o)=>{
+                return o.Name.includes(text); 
+            })
+        )
     }
 
     useEffect(() => {
@@ -170,7 +179,6 @@ const Home = () => {
     }, []);
 
     return <Container>
-          <TopText>Sort By</TopText>
         <Shelves></Shelves>
         <Header>
             <div>
@@ -182,7 +190,9 @@ const Home = () => {
             </Link>
         </Header>
 
-        <Input header="Filter By Name" />
+        <Input onChange={(e) =>{
+            FilterPage(e.target.value); 
+        }} header="Filter By Name" />
             <DropdownSelect>
                 <DropdownOption>None</DropdownOption>
                 <DropdownOption>Oldest</DropdownOption>
