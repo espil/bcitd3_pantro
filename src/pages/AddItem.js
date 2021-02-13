@@ -73,34 +73,19 @@ const TopText = styled.p`
 
 const AddItem = () => {
 
-  const HandleFormComplete = (name, amount, shelf, storage, expiry) => {
+  const HandleFormComplete = ({ name, amount, shelf, storage, expiry }) => {
     console.log(name, amount, shelf, storage, expiry);
 
-    var resp = axios.post("https://pantro-db.herokuapp.com/api/items", { name: name, amount: amount, shelf: shelf, storage: storage, expiry: expiry });
-    // console.log("create", resp);
+    var resp = axios.post("https://pantro-db.herokuapp.com/api/items", { Name: name, Amount: amount, Expiry: expiry, Shelf: shelf, Storage: storage, });
+    console.log("create", resp);
   }
 
-  const [items, setItems] = useState(null);
-
+  // const [items, setItems] = useState(null);
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("null");
   const [shelf, setShelf] = useState("");
   const [storage, setStorage] = useState("");
   const [expiry, setExpiry] = useState(new Date());
-
-  const GetItems = async () => {
-    var resp = await axios.get("https://pantro-db.herokuapp.com/api/Items");
-    // console.log(resp);
-
-    //update
-    setItems(resp.data);
-  }
-
-  useEffect(() => {
-
-    GetItems();
-  }, []);
-
 
   return <div>
     <form>
@@ -111,20 +96,24 @@ const AddItem = () => {
         <Input type="text" header="Item Name" onChange={(e) => {
           setName(e.target.value);
         }} />
+
         <Input type="text" header="Amount" onChange={(e) => {
           setAmount(e.target.value);
         }} />
+
         <TopText>Expiry Date</TopText>
         <DatePicker
           onChange={setExpiry}
           value={expiry}
         />
+
         <TopText>Shelf</TopText>
         <DropdownSelect onChange={(e) => {
           setShelf(e.target.value);
         }}>
           <DropdownOption value={shelf}></DropdownOption>
         </DropdownSelect>
+
         <TopText>Storage</TopText>
         <DropdownSelect onChange={(e) => {
           setStorage(e.target.value);
@@ -133,9 +122,9 @@ const AddItem = () => {
           <DropdownOption value="Freezer">Freezer</DropdownOption>
           <DropdownOption value="Pantry">Pantry</DropdownOption>
         </DropdownSelect>
-        <Link to="/">
+        {/* <Link to="/"> */}
           <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete}></AddButton>
-        </Link>
+        {/* </Link> */}
       </Container>
     </form>
   </div>
