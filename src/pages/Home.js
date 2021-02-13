@@ -7,12 +7,18 @@ import add from '../icons/add.svg';
 import shelf_icon from '../icons/shelves.svg';
 import { Link } from "react-router-dom";
 import Input from "comps/Input"; 
+
 import axios from "axios";
 
 const Container = styled.div`
 width: 375px;
 overflow-x: hidden;
 font-family: Pier Sans;
+.filter{
+    display:flex;
+    align-items:center;
+    margin-left:20px;
+}
 .header{
     display :flex;
     justify-content:space-between;
@@ -33,6 +39,25 @@ font-family: Pier Sans;
 }
 }
 `;
+
+const FilterInput = styled.input`
+    width: 226px;
+    height: 39px;
+    background-color:#F6F6FB;  
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius:13px;
+    border:none;
+    margin-left: 20px; 
+    font-family: Pier Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+`; 
 
 const DropdownSelect = styled.select`
     width: 327px;
@@ -234,18 +259,23 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 }
 
 const Home = () => {
-    
+
     const [items, setItems] = useState([]);
     const [shelves, setShelves] = useState([]);
+
+   
 
     const GetContent = async () => {
         var resp = await axios.get("https://pantro-db.herokuapp.com/api/items");
         var resptwo = await axios.get("https://pantro-db.herokuapp.com/api/shelves");
         console.log("items", resp.data.Item);
         console.log("shelves", resptwo.data.Shelf);
+        
         setItems([...resp.data.Item])
         setShelves([...resptwo.data.Shelf])
     }
+
+// FILTER BY STRING 
 
     const FilterPage = (text) => {
         setItems(
@@ -255,23 +285,22 @@ const Home = () => {
         )
     }
 
+    const AlphaFilter = () => {
+        setItems(
+            items.sort(sortByName)
+        )
+    }
+
     useEffect(() => {
         GetContent();
     }, []);
 
 // FILTER ALPHABETICALLY
-    const [sortitems, setSort] = useState(null);
     
-    const AlphaFilter = (sortitems) => {
-            setSort(
-                sortitems.sort(sortByName)
-        )
-    }
-
     function sortByName(a,b){
-        if(a.name > b.name){
+        if(a.Name > b.Name){
             return 1;
-        } else if(a.name < b.name){
+        } else if(a.Name < b.Name){
             return -1;
         } else {
             return 0;
@@ -287,11 +316,10 @@ const Home = () => {
         )
     }
 
-
     function reverseSortByName(a,b){
-        if(a.name > b.name){
+        if(a.Name > b.Name){
             return -1;
-        } else if(a.name < b.name){
+        } else if(a.Name < b.Name){
             return 1;
         } else {
             return 0;
@@ -309,7 +337,7 @@ const Home = () => {
         <ShelfContainer>
 
             {shelves.map((o, i) => <Link to={"/shelf/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
-                <Shelves key={i} header={o.Name} description={o.Description} icon={o.IconID} />
+                <Shelves key={i} header={o.Name} description={o.Description} icon={o.IconSrc} />
             </Link>)}
 
             <Link to="/add-shelf" style={{ textDecoration: 'none', color: "black" }}>
@@ -322,19 +350,20 @@ const Home = () => {
             <Spacer />
         </ShelfContainer>
         <Header>
+
             <div>
                 <img className="image" src={restaurant} alt="restaurant" />
                 <div>&nbsp;My Food</div>
             </div>
           
         </Header>
-
-        {/* <Input type="text" onChange={(e) =>{
-            FilterPage(e.target.value); 
-        }} header="Filter By Name" /> */}
-            <input type="text" onChange={(e) =>{
+        
+        <div className="filter">
+            <div>&nbsp;Filter Input</div>
+            <FilterInput type="text" onChange={(e) =>{
             FilterPage(e.target.value); 
         }} /> 
+        </div>
             <DropdownSelect>
                 <DropdownOption>None</DropdownOption>
                 <DropdownOption>Oldest</DropdownOption>
@@ -344,6 +373,7 @@ const Home = () => {
                 <DropdownOption
                     onContainerSelect={reverseAlphaFilter}>Reverse Alphabetical (Z-A)</DropdownOption>
             </DropdownSelect>
+        
 
         {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
             <ListedItem key={i} expiry={o.Expiry} name={o.Name} />

@@ -205,11 +205,11 @@ const Item = () => {
                 </div>
                 <div className="info_cont">
                     <div className="info_header">Item Storage</div>
-                    <div className="info_text">Find it in the {items.StorageID}</div>
+                    <div className="info_text">Find it in the {items.Storage}</div>
                 </div>
                 <div className="info_cont">
                     <div className="info_header">Shelf</div>
-                    <div className="info_text">Find it on your {items.ShelfID} Shelf</div>
+                    <div className="info_text">Find it on your {items.Shelf} Shelf</div>
                 </div>
             </StorageInfo>
             <Macros>
