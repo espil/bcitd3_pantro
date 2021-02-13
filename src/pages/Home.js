@@ -235,7 +235,6 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 
 const Home = () => {
     
-    const [allitems, setAll] = useState([]); 
     const [items, setItems] = useState([]);
     const [shelves, setShelves] = useState([]);
 
@@ -243,14 +242,13 @@ const Home = () => {
         var resp = await axios.get("https://pantro-db.herokuapp.com/api/items");
         var resptwo = await axios.get("https://pantro-db.herokuapp.com/api/shelves");
         console.log("items", resp.data.Item);
-        setAll(resp.data); 
         setItems([...resp.data.Item]);
     }
 
     const FilterPage = (text) => {
         setItems(
-            allitems.filter((o)=>{
-                return o.items.includes(text); 
+            items.filter((o)=>{
+                return o.Name.includes(text); 
             })
         )
     }
@@ -266,14 +264,15 @@ const Home = () => {
                 <img className="image" src={restaurant} alt="restaurant" />
                 <div>&nbsp;My Food</div>
             </div>
-            <Link to="/sort">
-                <img className="image" src={sort} alt="sort" />
-            </Link>
+          
         </Header>
 
-        <Input onChange={(e) =>{
+        {/* <Input type="text" onChange={(e) =>{
             FilterPage(e.target.value); 
-        }} header="Filter By Name" />
+        }} header="Filter By Name" /> */}
+            <input type="text" onChange={(e) =>{
+            FilterPage(e.target.value); 
+        }} /> 
             <DropdownSelect>
                 <DropdownOption>None</DropdownOption>
                 <DropdownOption>Oldest</DropdownOption>
