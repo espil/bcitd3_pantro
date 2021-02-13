@@ -37,26 +37,26 @@ const DropdownOption = styled.option`
     }
 `;
 
-const TopText = styled.p`
-    color: black; 
-    font-weight: bold; 
-    margin-left: 0.5vw;
-    user-select: none; 
-`;
-
-const Dropdown = ({ header, option }) => {
+const Dropdown = ({ option, onContainerSelect}) => {
 
     return <Container>
-        <TopText>{header}</TopText>
         <DropdownSelect>
-            <DropdownOption value="produce">{option}</DropdownOption>
+            <DropdownOption>{option="None"}</DropdownOption>
+            <DropdownOption>{option="Oldest"}</DropdownOption>
+            <DropdownOption>{option="Freshest"}</DropdownOption>
+            <DropdownOption
+                onClick={()=>{
+                    onContainerSelect();
+                }}
+            >{option="Alphabetical (A-Z)"}</DropdownOption>
+            <DropdownOption>{option="Reverse Alphabetical (Z-A)"}</DropdownOption>
         </DropdownSelect>
     </Container>
 }
 
 Dropdown.defaultProps = {
-    header: "header text",
     option: "option text",
+    onContainerSelect:()=>{}
 }
 
 export default Dropdown;     

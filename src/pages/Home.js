@@ -7,6 +7,7 @@ import add from '../icons/add.svg';
 import shelf_icon from '../icons/shelves.svg';
 import { Link } from "react-router-dom";
 import Input from "comps/Input"; 
+// import Dropdown from "comps/Dropdown"; 
 import axios from "axios";
 
 const Container = styled.div`
@@ -242,7 +243,9 @@ const Home = () => {
         var resp = await axios.get("https://pantro-db.herokuapp.com/api/items");
         var resptwo = await axios.get("https://pantro-db.herokuapp.com/api/shelves");
         console.log("items", resp.data.Item);
-        setItems([...resp.data.Item]);
+        console.log("shelves", resptwo.data.Shelf);
+        setItems([...resp.data.Item])
+        setShelves([...resptwo.data.Shelf])
     }
 
     const FilterPage = (text) => {
@@ -257,8 +260,68 @@ const Home = () => {
         GetContent();
     }, []);
 
+// FILTER ALPHABETICALLY
+    const [sortitems, setSort] = useState(null);
+    
+    const AlphaFilter = (sortitems) => {
+            setSort(
+                sortitems.sort(sortByName)
+        )
+    }
+
+    function sortByName(a,b){
+        if(a.name > b.name){
+            return 1;
+        } else if(a.name < b.name){
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+//FILTER REVERSE ALPHABETICALLY
+    const [reversesortitems, setReverseSort] = useState(null);
+        
+    const reverseAlphaFilter = (reversesortitems) => {
+            setReverseSort(
+            reversesortitems.sort(reverseSortByName)
+        )
+    }
+
+
+    function reverseSortByName(a,b){
+        if(a.name > b.name){
+            return -1;
+        } else if(a.name < b.name){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+
     return <Container>
-        <Shelves></Shelves>
+        <div className="header">
+            <div >
+                <img className="image" src={shelf_icon} alt="shelf_icon" />
+                <div>&nbsp;My Shelves</div>
+            </div>
+        </div>
+        <ShelfContainer>
+
+            {shelves.map((o, i) => <Link to={"/shelf/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
+                <Shelves key={i} header={o.Name} description={o.Description} icon={o.IconID} />
+            </Link>)}
+
+            <Link to="/add-shelf" style={{ textDecoration: 'none', color: "black" }}>
+                <Shelf >
+                    <img className="image" src={add} alt="icon" />
+                    <div className="header">Add Shelf</div>
+                    <div className="subheader">Sort your items using shelfs!</div>
+                </Shelf>
+            </Link>
+            <Spacer />
+        </ShelfContainer>
         <Header>
             <div>
                 <img className="image" src={restaurant} alt="restaurant" />
@@ -277,8 +340,10 @@ const Home = () => {
                 <DropdownOption>None</DropdownOption>
                 <DropdownOption>Oldest</DropdownOption>
                 <DropdownOption>Freshest</DropdownOption>
-                <DropdownOption>Alphabetical (A-Z)</DropdownOption>
-                <DropdownOption>Reverse Alphabetical (Z-A)</DropdownOption>
+                <DropdownOption 
+                    onContainerSelect={AlphaFilter}>Alphabetical (A-Z)</DropdownOption>
+                <DropdownOption
+                    onContainerSelect={reverseAlphaFilter}>Reverse Alphabetical (Z-A)</DropdownOption>
             </DropdownSelect>
 
         {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
@@ -288,6 +353,8 @@ const Home = () => {
         <Link to="/add-item">
             <FAB></FAB>
         </Link>
+
+
     </Container >
 }
 
