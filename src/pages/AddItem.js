@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import BrBut from 'comps/BackButtonC';
 import AddButton from 'comps/AddButton';
 import Input from 'comps/Input';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import restaurant from '../icons/restaurant.svg';
-import DatePicker from 'react-date-picker';
 
 const Container = styled.div`
-display:flex;
-flex-direction:column;
-width: 323px;
-height: 730px;
-padding:26px;
-.header {
-    font-family: Pier Sans;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 29px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin:52px 0px 26px 0px;
-}
+  display:flex;
+  flex-direction:column;
+  width:323px;
+  hegith:730px;
+  padding:26px;
+  .header {
+      font-family: Pier Sans;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 29px;
+      letter-spacing: 0em;
+      text-align: left;
+      margin:52px 0px 26px 0px;
+  }
 `;
 
 const DropdownSelect = styled.select`
@@ -68,69 +68,76 @@ const TopText = styled.p`
     user-select: none; 
 `;
 
-
 const AddItem = () => {
   const [items, setItems] = useState();
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [shelf, setShelf] = useState("");
-  const [storage, setStorage] = useState("");
-  const [expiry, setExpiry] = useState("");
+  const [name, setName] = useState();
+  const [amount, setAmount] = useState();
+  const [shelf, setShelf] = useState();
+  const [storage, setStorage] = useState();
+  const [expiry, setExpiry] = useState();
 
-  const HandleFormComplete = async (name, amount, shelf, storage, expiry) => {
-    console.log("handlefromcomplete", name, amount, shelf, storage, expiry);
-
-    var resp = axios.post("https://pantro-db.herokuapp.com/api/items", {
-      Name: name,
-      Amount: amount,
-      Expiry: expiry,
-      Shelf: shelf,
-      Storage: storage
+  const HandleFormComplete = async () => {
+    var resp = await axios.post("https://pantro-db.herokuapp.com/api/items", {
+      name: name,
+      amount: amount,
+      expiry: expiry,
+      shelf: shelf,
+      storage: storage
     });
-    console.log("create", resp);
+    // console.log(resp);
+
+    //update
+    setItems(resp.data);
   }
 
+  useEffect(() => {
+
+    HandleFormComplete();
+    
+    console.log("handlefromcomplete", name, amount, shelf, storage, expiry);
+  }, []);
+
   return <div>
-    <form>
-      <Container>
+  <Container>
+    <BrBut></BrBut>
 
-        <BrBut></BrBut>
-        <div className="header">Add an Item</div>
-        <Input type="text" header="Item Name" onChange={(e) => {
-          setName(e.target.value);
-        }} />
+  <form>
+    <div className="header">Add an Item</div>
+    <Input type="text" header="Item Name" onChange={(e) => {
+      setName(e.target.value);
+    }} />
 
-        <Input type="text" header="Amount" onChange={(e) => {
-          setAmount(e.target.value);
-        }} />
+    <Input type="text" header="Amount" onChange={(e) => {
+      setAmount(e.target.value);
+    }} />
 
-        <TopText>Expiry Date</TopText>
-        <DatePicker
-          onChange={setExpiry}
-          value={expiry}
-        />
+    <Input type="text" header="Expiry Date" onChange={(e) => {
+      setExpiry(e.target.value);
+    }} />
 
-        <TopText>Shelf</TopText>
-        <DropdownSelect onChange={(e) => {
-          setShelf(e.target.value);
-        }}>
-          <DropdownOption value={shelf}></DropdownOption>
-        </DropdownSelect>
+    <TopText>Shelf</TopText>
+    <DropdownSelect onChange={(e)=>{
+      setShelf(e.target.value);}}>
+        <DropdownOption value="Produce">Produce</DropdownOption>
+        <DropdownOption value="Dairy">Dairy</DropdownOption>
+        <DropdownOption value="Seafood">Seafood</DropdownOption>        
+      </DropdownSelect>
 
-        <TopText>Storage</TopText>
-        <DropdownSelect onChange={(e) => {
-          setStorage(e.target.value);
-        }}>
+    <TopText>Storage</TopText>
+    <DropdownSelect onChange={(e)=>{
+      setStorage(e.target.value);}}>
           <DropdownOption value="Fridge">Fridge</DropdownOption>
           <DropdownOption value="Freezer">Freezer</DropdownOption>
           <DropdownOption value="Pantry">Pantry</DropdownOption>
         </DropdownSelect>
-        {/* <Link to="/"> */}
-        <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete({ name, amount, shelf, storage, expiry })}></AddButton>
-        {/* </Link> */}
-      </Container>
-    </form>
-  </div>
+    
+
+    <Link to="/">
+    <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete({ name, amount, shelf, storage, expiry })}></AddButton>
+    </Link>
+  </form>
+  </Container>
+</div>
 }
 
 export default AddItem;
