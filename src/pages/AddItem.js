@@ -8,8 +8,6 @@ import axios from 'axios';
 import restaurant from '../icons/restaurant.svg';
 import DatePicker from 'react-date-picker';
 
-// const itemcontent = require("../itemDB.json");
-
 const Container = styled.div`
 display:flex;
 flex-direction:column;
@@ -72,20 +70,25 @@ const TopText = styled.p`
 
 
 const AddItem = () => {
-
-  const HandleFormComplete = ({ name, amount, shelf, storage, expiry }) => {
-    console.log(name, amount, shelf, storage, expiry);
-
-    var resp = axios.post("https://pantro-db.herokuapp.com/api/items", { Name: name, Amount: amount, Expiry: expiry, Shelf: shelf, Storage: storage, });
-    console.log("create", resp);
-  }
-
-  // const [items, setItems] = useState(null);
+  const [items, setItems] = useState();
   const [name, setName] = useState("");
-  const [amount, setAmount] = useState("null");
+  const [amount, setAmount] = useState("");
   const [shelf, setShelf] = useState("");
   const [storage, setStorage] = useState("");
-  const [expiry, setExpiry] = useState(new Date());
+  const [expiry, setExpiry] = useState("");
+
+  const HandleFormComplete = async (name, amount, shelf, storage, expiry) => {
+    console.log("handlefromcomplete", name, amount, shelf, storage, expiry);
+
+    var resp = axios.post("https://pantro-db.herokuapp.com/api/items", {
+      Name: name,
+      Amount: amount,
+      Expiry: expiry,
+      Shelf: shelf,
+      Storage: storage
+    });
+    console.log("create", resp);
+  }
 
   return <div>
     <form>
@@ -123,7 +126,7 @@ const AddItem = () => {
           <DropdownOption value="Pantry">Pantry</DropdownOption>
         </DropdownSelect>
         {/* <Link to="/"> */}
-          <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete}></AddButton>
+        <AddButton image={restaurant} value="Submit" onClick={HandleFormComplete({ name, amount, shelf, storage, expiry })}></AddButton>
         {/* </Link> */}
       </Container>
     </form>
