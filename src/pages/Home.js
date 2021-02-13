@@ -249,7 +249,7 @@ const Home = () => {
 
     const FilterPage = (text) => {
         setItems(
-            allitems.filter((o)=>{
+            items.filter((o)=>{
                 return o.Name.includes(text); 
             })
         )
@@ -326,14 +326,15 @@ const Home = () => {
                 <img className="image" src={restaurant} alt="restaurant" />
                 <div>&nbsp;My Food</div>
             </div>
-            <Link to="/sort">
-                <img className="image" src={sort} alt="sort" />
-            </Link>
+          
         </Header>
 
-        <Input onChange={(e) =>{
+        {/* <Input type="text" onChange={(e) =>{
             FilterPage(e.target.value); 
-        }} header="Filter By Name" />
+        }} header="Filter By Name" /> */}
+            <input type="text" onChange={(e) =>{
+            FilterPage(e.target.value); 
+        }} /> 
             <DropdownSelect>
                 <DropdownOption>None</DropdownOption>
                 <DropdownOption>Oldest</DropdownOption>
