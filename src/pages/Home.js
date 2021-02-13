@@ -6,7 +6,7 @@ import sort from '../icons/settings_black.svg';
 import add from '../icons/add.svg';
 import shelf_icon from '../icons/shelves.svg';
 import { Link } from "react-router-dom";
-import Input from "comps/Input"; 
+import Input from "comps/Input";
 import axios from "axios";
 
 const Container = styled.div`
@@ -216,7 +216,7 @@ const Shelves = ({ description, header, icon }) => {
 const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 
     return <Container>
-        <ListCont>      
+        <ListCont>
             <ListedName>
                 <NameCont>
                     <Bullet onClick={() => {
@@ -230,11 +230,11 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
                 <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
             </TimeLeft>
         </ListCont>
-        </Container>
+    </Container>
 }
 
 const Home = () => {
-    
+
     const [items, setItems] = useState([]);
     const [shelves, setShelves] = useState([]);
 
@@ -249,8 +249,8 @@ const Home = () => {
 
     const FilterPage = (text) => {
         setItems(
-            items.filter((o)=>{
-                return o.Name.includes(text); 
+            items.filter((o) => {
+                return o.Name.includes(text);
             })
         )
     }
@@ -259,39 +259,39 @@ const Home = () => {
         GetContent();
     }, []);
 
-// FILTER ALPHABETICALLY
+    // FILTER ALPHABETICALLY
     const [sortitems, setSort] = useState(null);
-    
+
     const AlphaFilter = (sortitems) => {
-            setSort(
-                sortitems.sort(sortByName)
+        setSort(
+            sortitems.sort(sortByName)
         )
     }
 
-    function sortByName(a,b){
-        if(a.name > b.name){
+    function sortByName(a, b) {
+        if (a.name > b.name) {
             return 1;
-        } else if(a.name < b.name){
+        } else if (a.name < b.name) {
             return -1;
         } else {
             return 0;
         }
     }
 
-//FILTER REVERSE ALPHABETICALLY
+    //FILTER REVERSE ALPHABETICALLY
     const [reversesortitems, setReverseSort] = useState(null);
-        
+
     const reverseAlphaFilter = (reversesortitems) => {
-            setReverseSort(
+        setReverseSort(
             reversesortitems.sort(reverseSortByName)
         )
     }
 
 
-    function reverseSortByName(a,b){
-        if(a.name > b.name){
+    function reverseSortByName(a, b) {
+        if (a.name > b.name) {
             return -1;
-        } else if(a.name < b.name){
+        } else if (a.name < b.name) {
             return 1;
         } else {
             return 0;
@@ -309,7 +309,7 @@ const Home = () => {
         <ShelfContainer>
 
             {shelves.map((o, i) => <Link to={"/shelf/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
-                <Shelves key={i} header={o.Name} description={o.Description} icon={o.IconID} />
+                <Shelves key={i} header={o.Name} description={o.Description} icon={o.IconSrc} />
             </Link>)}
 
             <Link to="/add-shelf" style={{ textDecoration: 'none', color: "black" }}>
@@ -326,24 +326,24 @@ const Home = () => {
                 <img className="image" src={restaurant} alt="restaurant" />
                 <div>&nbsp;My Food</div>
             </div>
-          
+
         </Header>
 
         {/* <Input type="text" onChange={(e) =>{
             FilterPage(e.target.value); 
         }} header="Filter By Name" /> */}
-            <input type="text" onChange={(e) =>{
-            FilterPage(e.target.value); 
-        }} /> 
-            <DropdownSelect>
-                <DropdownOption>None</DropdownOption>
-                <DropdownOption>Oldest</DropdownOption>
-                <DropdownOption>Freshest</DropdownOption>
-                <DropdownOption 
-                    onContainerSelect={AlphaFilter}>Alphabetical (A-Z)</DropdownOption>
-                <DropdownOption
-                    onContainerSelect={reverseAlphaFilter}>Reverse Alphabetical (Z-A)</DropdownOption>
-            </DropdownSelect>
+        <input type="text" onChange={(e) => {
+            FilterPage(e.target.value);
+        }} />
+        <DropdownSelect>
+            <DropdownOption>None</DropdownOption>
+            <DropdownOption>Oldest</DropdownOption>
+            <DropdownOption>Freshest</DropdownOption>
+            <DropdownOption
+                onContainerSelect={AlphaFilter}>Alphabetical (A-Z)</DropdownOption>
+            <DropdownOption
+                onContainerSelect={reverseAlphaFilter}>Reverse Alphabetical (Z-A)</DropdownOption>
+        </DropdownSelect>
 
         {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
             <ListedItem key={i} expiry={o.Expiry} name={o.Name} />
