@@ -7,7 +7,6 @@ import add from '../icons/add.svg';
 import shelf_icon from '../icons/shelves.svg';
 import { Link } from "react-router-dom";
 import Input from "comps/Input"; 
-// import Dropdown from "comps/Dropdown"; 
 import axios from "axios";
 
 const Container = styled.div`
@@ -236,7 +235,6 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 
 const Home = () => {
     
-    const [allitems, setAll] = useState([]); 
     const [items, setItems] = useState([]);
     const [shelves, setShelves] = useState([]);
 
@@ -245,7 +243,6 @@ const Home = () => {
         var resptwo = await axios.get("https://pantro-db.herokuapp.com/api/shelves");
         console.log("items", resp.data.Item);
         console.log("shelves", resptwo.data.Shelf);
-        setAll(resp.data); 
         setItems([...resp.data.Item])
         setShelves([...resptwo.data.Shelf])
     }
