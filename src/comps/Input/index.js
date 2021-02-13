@@ -15,7 +15,6 @@ const Input = styled.input`
   cursor: pointer;
   border-radius:13px;
   border:none;
-  margin-left: 20px; 
   font-family: Pier Sans;
   font-size: 16px;
   font-style: normal;
@@ -28,9 +27,7 @@ const Input = styled.input`
 const TopText = styled.p`
     color: black; 
     font-weight: bold; 
-    margin-left: 0.5vw;
     user-select: none; 
-    margin-left: 20px;
 `;
 
 const DescInp = ({header}) => {
