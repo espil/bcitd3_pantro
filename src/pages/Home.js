@@ -6,8 +6,7 @@ import sort from '../icons/settings_black.svg';
 import add from '../icons/add.svg';
 import shelf_icon from '../icons/shelves.svg';
 import { Link } from "react-router-dom";
-import Input from "comps/Input"; 
-
+import Input from "comps/Input";
 import axios from "axios";
 
 const Container = styled.div`
@@ -241,7 +240,7 @@ const Shelves = ({ description, header, icon }) => {
 const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
 
     return <Container>
-        <ListCont>      
+        <ListCont>
             <ListedName>
                 <NameCont>
                     <Bullet onClick={() => {
@@ -255,7 +254,7 @@ const ListedItem = ({ id, name, expiry, onBulletSelect, onClick }) => {
                 <Bullet width="15px" height="15px" bulletcolor="#70DA40" />
             </TimeLeft>
         </ListCont>
-        </Container>
+    </Container>
 }
 
 const Home = () => {
@@ -279,8 +278,8 @@ const Home = () => {
 
     const FilterPage = (text) => {
         setItems(
-            items.filter((o)=>{
-                return o.Name.includes(text); 
+            items.filter((o) => {
+                return o.Name.includes(text);
             })
         )
     }
@@ -295,31 +294,32 @@ const Home = () => {
         GetContent();
     }, []);
 
+
 // FILTER ALPHABETICALLY
     
-    function sortByName(a,b){
-        if(a.Name > b.Name){
+    function sortByName(a, b) {
+        if (a.name > b.name) {
             return 1;
-        } else if(a.Name < b.Name){
+        } else if (a.name < b.name) {
             return -1;
         } else {
             return 0;
         }
     }
 
-//FILTER REVERSE ALPHABETICALLY
+    //FILTER REVERSE ALPHABETICALLY
     const [reversesortitems, setReverseSort] = useState(null);
-        
+
     const reverseAlphaFilter = (reversesortitems) => {
-            setReverseSort(
+        setReverseSort(
             reversesortitems.sort(reverseSortByName)
         )
     }
 
-    function reverseSortByName(a,b){
-        if(a.Name > b.Name){
+    function reverseSortByName(a, b) {
+        if (a.name > b.name) {
             return -1;
-        } else if(a.Name < b.Name){
+        } else if (a.name < b.name) {
             return 1;
         } else {
             return 0;
@@ -355,8 +355,9 @@ const Home = () => {
                 <img className="image" src={restaurant} alt="restaurant" />
                 <div>&nbsp;My Food</div>
             </div>
-          
+
         </Header>
+
         
         <div className="filter">
             <div>&nbsp;Filter Input</div>
@@ -373,7 +374,7 @@ const Home = () => {
                 <DropdownOption
                     onContainerSelect={reverseAlphaFilter}>Reverse Alphabetical (Z-A)</DropdownOption>
             </DropdownSelect>
-        
+
 
         {items.map((o, i) => <Link to={"/item/" + o.id} style={{ textDecoration: 'none', color: "black" }}>
             <ListedItem key={i} expiry={o.Expiry} name={o.Name} />
