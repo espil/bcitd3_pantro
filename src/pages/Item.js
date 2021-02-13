@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Bbut from 'comps/BackButton';
-import cucumber from "../img/cucumbers.jpg"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -186,7 +185,7 @@ const Item = () => {
 
     return <Container>
         <div className="image">
-            <img src={cucumber} />
+            <img src={items.ImgSrc} />
         </div>
         <div className="shadow"></div>
         <Bbut></Bbut>
@@ -198,20 +197,7 @@ const Item = () => {
                     <div className="dot"></div>
                 </div>
             </Header>
-            <Macros>
-                <div>
-                    <div className="macro_number">?</div>
-                    <div className="macro_name">Protein</div>
-                </div>
-                <div className="middle">
-                    <div className="macro_number">?</div>
-                    <div className="macro_name">Carbs</div>
-                </div>
-                <div>
-                    <div className="macro_number">?</div>
-                    <div className="macro_name">Fat</div>
-                </div>
-            </Macros>
+
             <StorageInfo>
                 <div className="info_cont">
                     <div className="info_header">Amount</div>
@@ -226,6 +212,20 @@ const Item = () => {
                     <div className="info_text">Find it on your {items.ShelfID} Shelf</div>
                 </div>
             </StorageInfo>
+            <Macros>
+                <div>
+                    <div className="macro_number">?</div>
+                    <div className="macro_name">Protein</div>
+                </div>
+                <div className="middle">
+                    <div className="macro_number">?</div>
+                    <div className="macro_name">Carbs</div>
+                </div>
+                <div>
+                    <div className="macro_number">?</div>
+                    <div className="macro_name">Fat</div>
+                </div>
+            </Macros>
             <Nutrition>
                 <div className="nutrition_head">
                     Nutrition Facts
